@@ -1,14 +1,15 @@
+import { CalendarProvider } from "@/common/context";
 import { AppProps } from "next/app";
 import styled, { createGlobalStyle } from "styled-components";
 
 export default function App({ Component, pageProps}: AppProps) {
     return(
-            <>
+            <CalendarProvider>
                 <GlobalStyles />
                 <Container>
                     <Component {...pageProps} />
                 </Container>
-            </>
+            </CalendarProvider>
     )
 }
 

@@ -1,8 +1,11 @@
+import CalendarContext from "@/common/context";
+import { useContext } from "react";
 import styled from "styled-components";
 
 export default function Button() {
+    const { ModalCalendarToogle } = useContext(CalendarContext);
     return (
-        <ButtonHome>New vacation plan</ButtonHome>
+        <ButtonHome onClick={ModalCalendarToogle}>New vacation plan</ButtonHome>
     )
 }
 
