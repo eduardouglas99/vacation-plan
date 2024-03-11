@@ -4,15 +4,13 @@ import React from 'react';
 export default function Header () {
     const currentYear = new Date().getFullYear();
     return (
-        <HeaderHome>
+        <HeaderHome className='flex'>
             <CurrentYear>{currentYear}</CurrentYear>
         </HeaderHome>
     )
 }
 
 const HeaderHome = styled.header`
-    display: flex;
-    align-items: center;
     justify-content: space-between;
 `
 
