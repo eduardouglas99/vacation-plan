@@ -32,7 +32,9 @@ const GlobalStyles = createGlobalStyle`
         outline: none;
         cursor: pointer;
     }
-
+    .rdp-months {
+        justify-content: center;
+    }
 `
 
 const Container = styled.main`
