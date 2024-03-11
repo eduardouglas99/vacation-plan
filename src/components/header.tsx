@@ -14,6 +14,7 @@ export default function Header () {
 
 const HeaderHome = styled.header`
     justify-content: space-between;
+    padding: 0 0 80px 0;
 `
 
 const CurrentYear = styled.h1`
