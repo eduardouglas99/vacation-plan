@@ -34,7 +34,7 @@ const GlobalStyles = createGlobalStyle`
 
 `
 
-const Container = styled.div`
+const Container = styled.main`
     max-width: 1280px;
     width: 100%;
     margin: 0 auto;
