@@ -36,6 +36,10 @@ const GlobalStyles = createGlobalStyle`
     .rdp-months {
         justify-content: center;
     }
+    .rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
+        background: none;
+        color: black;
+    }
 `
 
 const Container = styled.main`

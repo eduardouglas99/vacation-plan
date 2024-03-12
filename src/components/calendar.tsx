@@ -24,6 +24,7 @@ export default function Calendar() {
                 pagedNavigation 
                 month={month} 
                 onMonthChange={setMonth}
+                fixedWeeks
             />
 
             <BackTodayButton disabled={isSameMonth(today, month)} onClick={() => setMonth(today)}>
