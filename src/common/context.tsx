@@ -19,7 +19,6 @@ export function CalendarProvider({children} : CalendarProps) {
 
     const ModalCalendarToogle = () => {
         setIsModalOpen(current => !current);
-        console.log(isModalOpen)
     }
 
     const value = useMemo(() => ({
