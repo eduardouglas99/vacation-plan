@@ -36,7 +36,7 @@ const participants = [
 
 export default function Modal() {
     const { isModalOpen, ModalCalendarToogle } = useContext(CalendarContext);
-    const { register, handleSubmit, control, formState: { errors } } = useForm<z.infer<typeof schema>>({
+    const { register, handleSubmit, control, reset, formState: { errors } } = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
         defaultValues: {
             names: [],
@@ -49,7 +49,8 @@ export default function Modal() {
     })
 
     const onSubmit = (data: any) => {
-        console.log(data)
+        console.log(data);
+        reset();
     }
 
     if (!isModalOpen) {
@@ -86,13 +87,13 @@ export default function Modal() {
                         <WrapperDateBlockForm className="flex">
                             <DateBlockForm>
                                 <LabelForm htmlFor="initialPeriod">Initial period</LabelForm>
-                                <InputModal type="date" id="initialPeriod" {...register('initialPeriod')}/>
+                                <InputModal className="dateInputForm" type="date" id="initialPeriod" {...register('initialPeriod')}/>
                                 {errors.initialPeriod && errors.initialPeriod?.message ? <ErrorValidation>{errors.initialPeriod.message}</ErrorValidation> : null}   
                             </DateBlockForm>
 
                             <DateBlockForm>
                                 <LabelForm htmlFor="endPeriod">End Period</LabelForm>
-                                <InputModal type="date" id="endPeriod" {...register('endPeriod')} />
+                                <InputModal className="dateInputForm" type="date" id="endPeriod" {...register('endPeriod')} />
                                 {errors.endPeriod && errors.endPeriod?.message ? <ErrorValidation>{errors.endPeriod.message}</ErrorValidation> : null}     
                             </DateBlockForm>
                         </WrapperDateBlockForm>
@@ -202,6 +203,9 @@ const InputModal = styled.input`
     font-weight: 400;
     max-width: 100%;
     width: 100%;
+    &.dateInputForm {
+        font-size: 14px;
+    }
 `
 
 const WrapperDateBlockForm = styled.div`
