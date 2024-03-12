@@ -15,7 +15,7 @@ export default function Modal() {
             <ModalWrapper>
                 <ModalHome>
                     <ModalTitle>Create a vacation plan</ModalTitle>
-                    <IoMdClose onClick={ModalCalendarToogle}/>
+                    <CloseModal onClick={ModalCalendarToogle}/>,
                 </ModalHome>
             </ModalWrapper>
         </ModalOverlay>
@@ -46,15 +46,24 @@ const ModalHome = styled.div`
     width:100%;
     border-radius: 15px;
     padding: 30px;
+    position: relative;
 `
 
 const ModalTitle = styled.h3`
-    /* margin: 20px 0; */
     font-weight: 400;
 `
-const CloseModal = styled.svg`
+const CloseModal = styled(IoMdClose)`
     cursor: pointer;
     position: absolute;
     right: 0;
     top: 0;
+    background-color: black;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    border-top-right-radius: 8px;
+    padding: 6px;
+    &:hover {
+        background-color: #2f2f2f;
+    }
 `
