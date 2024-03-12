@@ -38,7 +38,8 @@ const GlobalStyles = createGlobalStyle`
     }
     .rdp-day_selected, .rdp-day_selected:focus-visible, .rdp-day_selected:hover {
         background: none;
-        color: black;
+        color: red;
+        font-weight: bold;
     }
 `
 
