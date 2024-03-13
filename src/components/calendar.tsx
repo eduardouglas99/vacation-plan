@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import { isSameMonth } from 'date-fns';
 import { pt } from 'date-fns/locale';
 import 'react-day-picker/dist/style.css';
 import styled from 'styled-components';
 import { eachDayOfInterval, addDays, subDays, isWithinInterval } from 'date-fns';
+import CalendarContext from '@/common/context';
 
 type HolidaysPlanProps = {
     id: number,
@@ -85,12 +86,14 @@ export default function Calendar() {
     const today = new Date();
     const [days, setDays] = React.useState<Date[]>([]);
     const [month, setMonth] = useState<Date>(new Date());
-    const bookedStyle = { border: '2px solid #000' };
-    const startStyle = { border: '2px solid red' };
-    const endStyle = { border: '2px solid blue' };
-    const middleStyle = { border: '2px solid pink' };
-    const [holidayData, setHolidayData] = useState<HolidaysPlanProps>();
-    const [holidayRegister, setHolidayRegister] = useState<HolidaysServiceProps>();
+    const bookedStyle = { background: '#ff000024' };
+    const startStyle = { background: '#ff000024', borderBottomLeftRadius: '50%',
+    borderTopLeftRadius: '50%' };
+    const endStyle = { background: '#ff000024', borderBottomRightRadius: '50%',
+    borderTopRightRadius: '50%'  };
+    const middleStyle = { background: '#ff000024' };
+    const { SheetCalendarToogle, ModalCalendarToogle, holidayData, setHolidayData, holidayRegister, setHolidayRegister } = useContext(CalendarContext);
+
 
     const splitArray = (data: HolidaysServiceProps[]) => {
         const booked: Date[] = [];
@@ -136,9 +139,11 @@ export default function Calendar() {
             return;
         }
 
+        SheetCalendarToogle();
+
         if (!haveHolidayPlan) { 
             setHolidayData(undefined);
-        }else {
+        } else {
             setHolidayData(haveHolidayPlan);
         }
         
@@ -174,25 +179,6 @@ export default function Calendar() {
                 }
                 modifiersStyles={{ booked: bookedStyle, range_start: startStyle, range_end: endStyle, range_middle: middleStyle  }}
             />
-
-            {holidayData ? (
-                <div>
-                    <h1>{holidayData.title}</h1>
-                    <p>{holidayData.description}</p>
-                    <p>{holidayData.location}</p>
-                    <p>{holidayData.date.toLocaleDateString()}</p>
-                </div>
-            ) : null}
-
-        {holidayRegister ? (
-                <div>
-                    <h1>{holidayRegister && holidayRegister.title}</h1>
-                    <p>{holidayRegister && holidayRegister.description}</p>
-                    <p>{holidayRegister && holidayRegister.location}</p>
-                    <p>{holidayRegister && holidayRegister.initialPeriod.toLocaleDateString()}</p>
-                    <p>{holidayRegister && holidayRegister.endPeriod.toLocaleDateString()}</p>
-                </div>
-            ) : null}
 
             <BackTodayButton disabled={isSameMonth(today, month)} onClick={() => setMonth(today)}>
                 Back to Today

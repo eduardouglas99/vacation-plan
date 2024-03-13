@@ -3,11 +3,37 @@ import { SetStateAction, createContext, useMemo, useState } from "react";
 type CalendarContextProps = {
     isModalOpen: boolean,
     setIsModalOpen: React.Dispatch<SetStateAction<boolean>>,
-    ModalCalendarToogle: () => void
+    ModalCalendarToogle: () => void,
+    isSheetOpen: boolean,
+    setIsSheetOpen: React.Dispatch<SetStateAction<boolean>>,
+    SheetCalendarToogle: () => void,
+
+    holidayData: HolidaysPlanProps | undefined,
+    setHolidayData: React.Dispatch<SetStateAction<HolidaysPlanProps | undefined>>,
+    holidayRegister: HolidaysServiceProps | undefined,
+    setHolidayRegister: React.Dispatch<SetStateAction<HolidaysServiceProps | undefined>>
 }
 
 type CalendarProps = {
     children: React.ReactNode;
+}
+
+type HolidaysPlanProps = {
+    id: number,
+    title: string,
+    description: string,
+    location: string,
+    date: Date
+}
+
+type HolidaysServiceProps = {
+    id: number,
+    name: string,
+    title: string,
+    description: string,
+    location: string,
+    initialPeriod: Date,
+    endPeriod: Date,
 }
 
 const CalendarContext = createContext({} as CalendarContextProps);
@@ -16,15 +42,25 @@ export default CalendarContext;
 
 export function CalendarProvider({children} : CalendarProps) {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
+    const [holidayData, setHolidayData] = useState<HolidaysPlanProps>();
+    const [holidayRegister, setHolidayRegister] = useState<HolidaysServiceProps>();
 
     const ModalCalendarToogle = () => {
         setIsModalOpen(current => !current);
     }
 
+    const SheetCalendarToogle = () => {
+        setIsSheetOpen(current => !current);
+
+    }
+
     const value = useMemo(() => ({
-        isModalOpen, setIsModalOpen, ModalCalendarToogle
+        isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
+        holidayData, setHolidayData, holidayRegister, setHolidayRegister
     }), [
-        isModalOpen, setIsModalOpen, ModalCalendarToogle
+        isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
+        holidayData, setHolidayData, holidayRegister, setHolidayRegister
     ])
 
     return(

@@ -1,8 +1,7 @@
-import CalendarContext from "@/common/context";
 import Calendar from "@/components/calendar";
 import Header from "@/components/header";
 import Modal from "@/components/modal";
-import { useContext } from "react";
+import Sheet from "@/components/sheet";
 
 export default function Home() {
     return(
@@ -10,6 +9,7 @@ export default function Home() {
             <Header />
             <Calendar />
             <Modal />
+            <Sheet />
         </section>
     )
 }
