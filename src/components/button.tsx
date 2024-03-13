@@ -17,4 +17,10 @@ const ButtonHome = styled.button`
     &:hover {
         background-color: #8d0404;
     }
+    @media only screen and (max-width: 580px) {
+        padding: 14px;
+        max-width: 160px;
+        width: 100%;
+        font-size: 12px;
+    }
 `

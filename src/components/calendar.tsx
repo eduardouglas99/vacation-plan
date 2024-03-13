@@ -6,6 +6,7 @@ import 'react-day-picker/dist/style.css';
 import styled from 'styled-components';
 import { eachDayOfInterval, addDays, subDays, isWithinInterval } from 'date-fns';
 import CalendarContext from '@/common/context';
+import { useMediaQuery } from 'react-responsive';
 
 type HolidaysPlanProps = {
     id: number,
@@ -154,31 +155,41 @@ export default function Calendar() {
         }
     }
 
+    const [domLoaded, setDomLoaded] = useState(false);
+
 
     useEffect(() => {
         data.map((day: HolidaysPlanProps) => {
             setDays(state => [...state, day.date]);
+            setDomLoaded(true);
         })    
     }, [])
+    
+    const isMobile = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 768px)' });
+    const isTablet = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 980px)' });
+    const isDesktop = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 1280px)' });
 
+    const numberOfMonths:number = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 4;
     return(
         <>
-            <DayPicker 
-                mode="multiple"
-                min={1}
-                selected={days}
-                numberOfMonths={4}
-                locale={pt}
-                pagedNavigation 
-                month={month} 
-                onMonthChange={setMonth}
-                fixedWeeks
-                onDayClick={SearchInformationPeriod}
-                modifiers={
-                    splitArray(holidaysRegister)
-                }
-                modifiersStyles={{ booked: bookedStyle, range_start: startStyle, range_end: endStyle, range_middle: middleStyle  }}
-            />
+            {domLoaded && (
+                <DayPicker 
+                    mode="multiple"
+                    min={1}
+                    selected={days}
+                    numberOfMonths={numberOfMonths}
+                    locale={pt}
+                    pagedNavigation 
+                    month={month} 
+                    onMonthChange={setMonth}
+                    fixedWeeks
+                    onDayClick={SearchInformationPeriod}
+                    modifiers={
+                        splitArray(holidaysRegister)
+                    }
+                    modifiersStyles={{ booked: bookedStyle, range_start: startStyle, range_end: endStyle, range_middle: middleStyle  }}
+                />
+            )}
 
             <BackTodayButton disabled={isSameMonth(today, month)} onClick={() => setMonth(today)}>
                 Back to Today
@@ -189,7 +200,6 @@ export default function Calendar() {
 
 const BackTodayButton = styled.button`
     background: transparent;
-    margin: 40px auto;
     text-align: center;
     width: 100%;
     &:hover {

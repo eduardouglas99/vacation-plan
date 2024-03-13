@@ -2,10 +2,12 @@ import { useContext} from "react";
 import styled from "styled-components";
 import { IoMdClose } from "react-icons/io";
 import CalendarContext from "@/common/context";
-import { IoLocationSharp } from "react-icons/io5";
+import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa";
 import { FaFileAlt } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 
 export default function Sheet() {
     const { isSheetOpen, SheetCalendarToogle, holidayData, holidayRegister } = useContext(CalendarContext);
@@ -23,15 +25,15 @@ export default function Sheet() {
                     <LineBlock></LineBlock>
                     {holidayData ? (
                         <InfoGroup>
-                            <h1>Title: {holidayData.title}</h1>
+                            <h2>Title: {holidayData.title}</h2>
                             <TextGroup>
                                 <FaFileAlt />
                                 <b>Description:</b> 
-                                <span>{holidayData.description}</span>
+                                <span className="description">{holidayData.description}</span>
                             </TextGroup>
 
                             <TextGroup>
-                                <IoLocationSharp />
+                                <FaLocationDot />
                                 <b>Location:</b> 
                                 <span>{holidayData.location}</span>
                             </TextGroup>
@@ -41,18 +43,23 @@ export default function Sheet() {
                                 <b>Date:</b> 
                                 <span>{holidayData.date.toLocaleDateString()}</span>
                             </TextGroup>
+                            <LineBlock></LineBlock>
                         </InfoGroup>
                     ) : null}
 
-                    <LineBlock></LineBlock>
-
                     {holidayRegister ? (
                         <InfoGroup>
-                            <h2>Title: {holidayRegister.title}</h2>
+                            <TextGroupTitle>
+                                <h2>Title: {holidayRegister.title}</h2>
+                                <TextGroupIcons>
+                                    <FaEdit title="Edit plan"/>
+                                    <FaTrashAlt title="Remove plan"/>
+                                </TextGroupIcons>
+                            </TextGroupTitle>
                             <TextGroup>
                                 <FaFileAlt />
                                 <b>Description:</b> 
-                                <span>{holidayRegister.description}</span>
+                                <span className="description">{holidayRegister.description}</span>
                             </TextGroup> 
 
                             <TextGroup>
@@ -62,7 +69,7 @@ export default function Sheet() {
                             </TextGroup> 
 
                             <TextGroup>
-                                <IoLocationSharp />
+                                <FaLocationDot />
                                 <b>Location:</b> 
                                 <span>{holidayRegister.location}</span>
                             </TextGroup> 
@@ -106,6 +113,15 @@ const ModalWrapper = styled.div`
     height: 100%;
     right: 0;
     position: absolute;
+    @media only screen and (max-width: 1280px){
+        width: 450px;
+    }
+    @media only screen and (max-width: 768px){
+        width: 340px;
+    }
+    @media only screen and (max-width: 580px) {
+        width: 100%;
+    }
 `
 
 const ModalHome = styled.div`
@@ -147,20 +163,61 @@ const LineBlock = styled.div`
 const InfoGroup = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     h2 {
         color: #1E1E1E;
         font-size: 20px;
+        @media only screen and (max-width: 768px){
+            font-size: 18px;
+        }
     }
+    @media only screen and (max-width: 580px){
+            gap: 10px;
+        }
 `
 const TextGroup = styled.div`
     display: flex;
     align-items: center;
     gap: 4px;
+    flex-wrap: wrap;
     b, svg {
         color: #1E1E1E;
     }
     svg {
         color: #1E1E1E;
     }
+    b {
+        @media only screen and (max-width: 768px){
+            font-size: 14px;
+        }
+    }
+    span {
+        @media only screen and (max-width: 768px){
+            font-size: 13px;
+        }
+    }
+    .description {
+        max-width: 100%;
+        width: 100%;
+        word-wrap: break-word;
+    }
 `
+
+const TextGroupTitle = styled(TextGroup)`
+    justify-content: space-between;
+`
+const TextGroupIcons = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    svg {
+        font-size: 24px;
+        cursor: pointer;
+        &:last-child {
+            color: #ff0000c4;
+            font-size: 20px;
+        }
+    }
+`
+
+

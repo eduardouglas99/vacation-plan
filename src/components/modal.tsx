@@ -129,6 +129,7 @@ const ModalOverlay = styled.div`
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 99999999;
+    padding: 0 30px;
 `
 
 const ModalWrapper = styled.div`
@@ -210,12 +211,18 @@ const InputModal = styled.input`
 
 const WrapperDateBlockForm = styled.div`
     justify-content: space-between;
+    @media only screen and (max-width: 580px) {
+        flex-wrap: wrap;
+    }
 `
 
 const DateBlockForm = styled.div`
     max-width: 200px;
     width: 100%;
     display: block;
+    @media only screen and (max-width: 580px) {
+        max-width: 100%;
+    }
 `
 
 const ButtonSubmitModal = styled.button`
@@ -237,5 +244,8 @@ const ButtonSubmitModal = styled.button`
     margin: 0 auto;
     &:hover {
         background-color: #414141;
+    }
+    @media only screen and (max-width: 580px) {
+        bottom: -20px;
     }
 `

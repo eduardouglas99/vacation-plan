@@ -48,4 +48,7 @@ const Container = styled.main`
     width: 100%;
     margin: 0 auto;
     padding: 60px;
+    @media only screen and (max-width: 580px) {
+        padding: 30px;
+    }
 `;
