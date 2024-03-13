@@ -1,5 +1,7 @@
 import { CalendarProvider } from "@/common/context";
 import { AppProps } from "next/app";
+import Head from "next/head";
+
 import styled, { createGlobalStyle } from "styled-components";
 
 export default function App({ Component, pageProps}: AppProps) {
@@ -7,6 +9,11 @@ export default function App({ Component, pageProps}: AppProps) {
             <CalendarProvider>
                 <GlobalStyles />
                 <Container>
+                    <Head>
+                        <meta charSet="UTF-8" />
+                        <title>Vacation Plans</title>
+                        <meta name="description" content="Our solution provides a comprehensive way to manage employee vacations within the company. It includes a detailed calendar with all holidays marked, allowing employees and administrators to easily plan and track vacation days. The system provides essential information such as holiday titles, descriptions, locations, and date ranges, ensuring efficient management of employee time off. With this solution, companies can streamline the vacation planning process, minimize scheduling conflicts, and enhance overall productivity." />
+                    </Head>
                     <Component {...pageProps} />
                 </Container>
             </CalendarProvider>
