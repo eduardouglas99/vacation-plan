@@ -1,3 +1,4 @@
+import { CalendarProps, HolidaysPlanProps } from "@/interface/Holidays";
 import { SetStateAction, createContext, useMemo, useState } from "react";
 
 type CalendarContextProps = {
@@ -12,18 +13,6 @@ type CalendarContextProps = {
     setHolidayData: React.Dispatch<SetStateAction<HolidaysPlanProps | undefined>>,
     holidayRegister: HolidaysServiceProps | undefined,
     setHolidayRegister: React.Dispatch<SetStateAction<HolidaysServiceProps | undefined>>
-}
-
-type CalendarProps = {
-    children: React.ReactNode;
-}
-
-type HolidaysPlanProps = {
-    id: number,
-    name: string,
-    description: string,
-    location: string,
-    date: Date
 }
 
 type HolidaysServiceProps = {
