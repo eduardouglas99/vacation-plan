@@ -20,7 +20,7 @@ type CalendarProps = {
 
 type HolidaysPlanProps = {
     id: number,
-    title: string,
+    name: string,
     description: string,
     location: string,
     date: Date
@@ -28,7 +28,7 @@ type HolidaysPlanProps = {
 
 type HolidaysServiceProps = {
     id: number,
-    name: string,
+    participant: string,
     title: string,
     description: string,
     location: string,

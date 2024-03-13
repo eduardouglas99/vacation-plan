@@ -1,0 +1,263 @@
+[
+    {
+      "date": "2024-01-01",
+      "localName": "Ano Novo",
+      "name": "New Year's Day",
+      "description": "Celebrates the beginning of the new year with festivities and gatherings." ,
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-02-13",
+      "localName": "Carnaval",
+      "name": "Carnival",
+      "description": "A festive period marked by colorful parades, costumes, and street parties.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Optional"
+      ]
+    },
+    {
+      "date": "2024-03-29",
+      "localName": "Sexta-feira Santa",
+      "name": "Good Friday",
+      "description": "A Christian holiday commemorating the crucifixion of Jesus Christ.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-03-31",
+      "localName": "Domingo de Páscoa",
+      "name": "Easter Sunday",
+      "description": "Easter Sunday is a major Christian holiday that celebrates the resurrection of Jesus Christ from the dead. It is considered the most important event in the Christian calendar and is observed with religious services, prayer, and various traditions worldwide. In Portugal, Easter Sunday is celebrated with church services, family gatherings, festive meals, and the exchange of Easter eggs and other treats. It is a time of joy and spiritual significance for Christians, symbolizing hope, renewal, and new beginnings.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-04-25",
+      "localName": "Dia da Liberdade",
+      "name": "Freedom Day",
+      "description": "Commemorates the Carnation Revolution of 1974, which ended the authoritarian regime in Portugal.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-05-01",
+      "localName": "Dia do Trabalhador",
+      "name": "Labour Day",
+      "description": "Honors the achievements of workers and the labor movement.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-05-30",
+      "localName": "Corpo de Deus",
+      "name": "Corpus Christi",
+      "countryCode": "PT",
+      "description": "Corpus Christi is a Christian holiday celebrated on the Thursday after Trinity Sunday, which falls on the 60th day after Easter Sunday. It honors the Eucharist and is a commemoration of the Last Supper of Jesus Christ with his apostles. In Portugal, Corpus Christi is observed with religious processions, church services, and festivities that include decorative displays of flowers, carpets, and altars along the streets. It is a significant religious and cultural event, bringing communities together to express their faith and devotion.",
+      "location": "Portugal",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-06-01",
+      "localName": "Dia dos Açores",
+      "name": "Azores Day",
+      "countryCode": "PT",
+      "description": "Azores Day is a regional holiday celebrated in the Azores, an autonomous region of Portugal, on October 5th. It commemorates the political autonomy granted to the Azores in 1976, allowing the region to govern its own affairs within the framework of the Portuguese Republic. The holiday is typically observed with various cultural and recreational activities, including traditional music and dance performances, parades, exhibitions, and local cuisine tastings. It's a day for Azoreans to celebrate their heritage, history, and cultural identity.",
+      "location": "Portugal",
+      "fixed": false,
+      "global": false,
+      "counties": [
+        "PT-20"
+      ],
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-06-10",
+      "localName": "Dia de Portugal, de Camões e das Comunidades Portuguesas",
+      "name": "National Day",
+      "countryCode": "PT",
+      "description": "Celebrates the life and achievements of Luís de Camões, a national poet, and Portugal's culture and history.",
+      "location": "Portugal",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-07-01",
+      "localName": "Dia da Madeira",
+      "name": "Madeira Day",
+      "countryCode": "PT",
+      "description": "Madeira Day is a regional holiday celebrated in the autonomous region of Madeira, Portugal, on July 1st. It commemorates the day when Portugal granted autonomy to the Madeira archipelago in 1976. The holiday is marked by various cultural events, exhibitions, and festivities that showcase Madeiran traditions, music, dance, and cuisine. It's a time for locals and tourists alike to celebrate the unique heritage and identity of Madeira.",
+      "location": "Portugal",
+      "fixed": false,
+      "global": false,
+      "counties": [
+        "PT-30"
+      ],
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-08-15",
+      "localName": "Assunção de Nossa Senhora",
+      "name": "Assumption Day",
+      "description": "A Christian holiday commemorating the belief in the bodily ascension of Mary, mother of Jesus.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-10-05",
+      "localName": "Implantação da República",
+      "name": "Republic Day",
+      "description": "Marks the establishment of the Portuguese Republic in 1910, ending the monarchy.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-11-01",
+      "localName": "Dia de Todos-os-Santos",
+      "name": "All Saints Day",
+      "description": "A Christian holiday honoring all saints and martyrs. Restoration of Independence (December 1): Celebrates the restoration of Portuguese independence from Spanish rule in 1640.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-12-01",
+      "localName": "Restauração da Independência",
+      "name": "Restoration of Independence",
+      "description": "The Restoration of Independence is a national holiday in Portugal celebrated on December 1st. It commemorates the restoration of Portuguese independence from Spanish rule in 1640. The day is marked by various events, including official ceremonies, cultural performances, and historical exhibitions, honoring Portugal's freedom and sovereignty.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-12-08",
+      "localName": "Imaculada Conceição",
+      "name": "Immaculate Conception",
+      "description": "The Immaculate Conception is a significant Catholic holiday in Portugal, observed on December 8th. It commemorates the belief that the Virgin Mary was conceived without original sin, symbolizing her purity and holiness. This day is marked by special religious ceremonies and prayers dedicated to Mary's immaculate nature.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-12-25",
+      "localName": "Natal",
+      "name": "Christmas Day",
+      "description": "A Christian holiday commemorating the birth of Jesus Christ, marked by religious observances and festive traditions.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": true,
+      "counties": null,
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    },
+    {
+      "date": "2024-12-26",
+      "localName": "Primeira Oitava",
+      "name": "St. Stephen's Day",
+      "description": "St. Stephen's Day, celebrated on December 26th, honors the life of Saint Stephen, the first Christian martyr. It is a public holiday in several countries, including Portugal, marked by various traditions like giving to the less fortunate, visiting family, and enjoying festive meals together. In Portugal, it's a time for relaxation, reflection, and spreading goodwill among communities.",
+      "location": "Portugal",
+      "countryCode": "PT",
+      "fixed": false,
+      "global": false,
+      "counties": [
+        "PT-30"
+      ],
+      "launchYear": null,
+      "types": [
+        "Public"
+      ]
+    }
+  ]

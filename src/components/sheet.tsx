@@ -25,7 +25,7 @@ export default function Sheet() {
                     <LineBlock></LineBlock>
                     {holidayData ? (
                         <InfoGroup>
-                            <h2>Title: {holidayData.title}</h2>
+                            <h2>Title: {holidayData.name}</h2>
                             <TextGroup>
                                 <FaFileAlt />
                                 <b>Description:</b> 
@@ -65,7 +65,7 @@ export default function Sheet() {
                             <TextGroup>
                                 <FaUserCheck />
                                 <b>Participants:</b> 
-                                <span>{holidayRegister.name}</span>
+                                <span>{holidayRegister.participant}</span>
                             </TextGroup> 
 
                             <TextGroup>
