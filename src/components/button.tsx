@@ -5,7 +5,7 @@ import styled from "styled-components";
 export default function Button() {
     const { ModalCalendarToogle } = useContext(CalendarContext);
     return (
-        <ButtonHome onClick={ModalCalendarToogle}>New vacation plan</ButtonHome>
+        <ButtonHome title="New vacation plan" onClick={ModalCalendarToogle}>New vacation plan</ButtonHome>
     )
 }
 
