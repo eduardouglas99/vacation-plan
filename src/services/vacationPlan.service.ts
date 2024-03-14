@@ -30,3 +30,18 @@ export async function createVacationPlan(vacation: HolidaysServiceProps) {
         console.log(error);
     })
 }
+
+export async function deleteVacationPlan(vacation: HolidaysServiceProps) {
+    return await fetch(`${VACATION_PLAN_API_URL}/vacationPlan/${vacation.id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+    .then((response) => {
+        console.log(response)
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+}

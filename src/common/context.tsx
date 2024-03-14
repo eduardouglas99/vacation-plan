@@ -1,5 +1,5 @@
 import { EmployeesProps, HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
-import { createVacationPlan } from "@/services/vacationPlan.service";
+import { createVacationPlan, deleteVacationPlan } from "@/services/vacationPlan.service";
 import { formatISO, parseISO } from "date-fns";
 import { SetStateAction, createContext, useMemo, useState } from "react";
 
@@ -21,6 +21,7 @@ type CalendarContextProps = {
     employees: EmployeesProps[],
     setEmployees: React.Dispatch<SetStateAction<EmployeesProps[]>>
     createPlan: (vacation: HolidaysServiceProps) => void,
+    deletePlan: (vacation: HolidaysServiceProps) => void,
     genericFilterPeriod: (initialPeriod: string, endPeriod: string) => HolidaysServiceProps[]
 }
 
@@ -66,14 +67,19 @@ export function CalendarProvider({children} : CalendarProps) {
         createVacationPlan(vacation);
     }
 
+    const deletePlan = (vacation : HolidaysServiceProps) => {
+        deleteVacationPlan(vacation);
+        SheetCalendarToogle();
+    }
+
     const value = useMemo(() => ({
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
         holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays,vacationPlan, setVacationPlan,
-        employees, setEmployees, createPlan, genericFilterPeriod
+        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan
     }), [
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
         holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays, vacationPlan, setVacationPlan,
-        employees, setEmployees, createPlan, genericFilterPeriod
+        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan
     ])
 
     return(
