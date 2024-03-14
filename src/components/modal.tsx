@@ -1,14 +1,13 @@
 import CalendarContext from "@/common/context";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { IoMdClose } from "react-icons/io";
 import { useForm, Controller } from 'react-hook-form';
 import * as z from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MultiSelect } from "react-multi-select-component";
-import { EmployeesProps, HolidaysServiceProps } from "@/interface/Holidays";
-import { format, parseISO } from "date-fns";
-import { updateVacationPlan } from "@/services/vacationPlan.service";
+import { HolidaysServiceProps } from "@/interface/Holidays";
+import { format, isValid, parseISO } from "date-fns";
 
 const schema = z.object({
     names: z.array(z.object({
@@ -30,7 +29,7 @@ const schema = z.object({
 })
 
 export default function Modal() {
-    const { isModalOpen, ModalCalendarToogle, employees, createPlan, genericFilterPeriod, editData } = useContext(CalendarContext);
+    const { isModalOpen, ModalCalendarToogle, employees, createPlan, genericFilterPeriod, editData, setEditData, updatePlan } = useContext(CalendarContext);
     const { register, handleSubmit, control, reset, formState: { errors }, setValue } = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
         defaultValues: {
@@ -51,32 +50,47 @@ export default function Modal() {
                 initialPeriod: parseISO(data.initialPeriod),
                 endPeriod: parseISO(data.endPeriod),
             };
-            if(editData) updateVacationPlan(updatedVacation);
+            updatePlan(updatedVacation);
             reset();
             ModalCalendarToogle();
         } else {
+            const responseFilter = genericFilterPeriod(data.initialPeriod, data.endPeriod);
             const createVacation: HolidaysServiceProps = {
                 ...data,
                 initialPeriod: parseISO(data.initialPeriod),
                 endPeriod: parseISO(data.endPeriod),
             };
-            createPlan(createVacation);
-            reset();
-            ModalCalendarToogle();
+            if(responseFilter.length > 0) {
+                console.log('n pode')
+            } else {
+                createPlan(createVacation);
+                reset();
+                ModalCalendarToogle();
+            }
         }
     }
 
     useEffect(() => {
-        if(!editData) return;
-        const initialDate = parseISO(editData.initialPeriod);
-        const endDate = parseISO(editData.endPeriod);
-        const initialDateString = format(initialDate, 'yyyy-MM-dd');
-        const endDateString = format(endDate, 'yyyy-MM-dd');
-        setValue("names", editData.names);
-        setValue("initialPeriod", initialDateString);
-        setValue("endPeriod", endDateString);
-        setValue("title", editData.title);
-        setValue("description", editData.description);
+        if(!editData){
+            setValue("names", []);
+            setValue("initialPeriod", "");
+            setValue("endPeriod", "");
+            setValue("title", "");
+            setValue("description", "");
+            return
+        } ;
+        if (editData) {
+            const initialDate = isValid(new Date(editData.initialPeriod)) ? new Date(editData.initialPeriod) : new Date();
+            const endDate = isValid(new Date(editData.endPeriod)) ? new Date(editData.endPeriod) : new Date();
+            const initialDateString = format(initialDate, 'yyyy-MM-dd');
+            const endDateString = format(endDate, 'yyyy-MM-dd');
+    
+            setValue("names", editData.names);
+            setValue("initialPeriod", initialDateString);
+            setValue("endPeriod", endDateString);
+            setValue("title", editData.title);
+            setValue("description", editData.description);
+        }
     }, [editData])
 
     if (!isModalOpen) {
@@ -88,7 +102,10 @@ export default function Modal() {
             <ModalWrapper>
                 <ModalHome>
                     <ModalTitle>Create a vacation plan</ModalTitle>
-                    <CloseModal onClick={ModalCalendarToogle}/>
+                    <CloseModal onClick={() => {
+                        ModalCalendarToogle();
+                        setEditData(null);
+                    }}/>
                     <FormModal onSubmit={handleSubmit(onSubmit)}>
                         <div>
                             <LabelForm htmlFor="names">Name(s)</LabelForm>
@@ -276,7 +293,3 @@ const ButtonSubmitModal = styled.button`
         bottom: -20px;
     }
 `
-
-function updatePlan(updatedVacation: HolidaysServiceProps) {
-    throw new Error("Function not implemented.");
-}

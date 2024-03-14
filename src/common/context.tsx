@@ -1,6 +1,6 @@
 import { EmployeesProps, HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
 import { createVacationPlan, deleteVacationPlan, updateVacationPlan } from "@/services/vacationPlan.service";
-import { formatISO, isWithinInterval, parseISO } from "date-fns";
+import { format, isWithinInterval } from "date-fns";
 import { SetStateAction, createContext, useMemo, useState } from "react";
 
 type CalendarContextProps = {
@@ -59,37 +59,55 @@ export function CalendarProvider({children} : CalendarProps) {
     }
 
     const genericFilterPeriod = (initialPeriod: string, endPeriod: string) => {
-        const formatInitialPeriod = parseISO(initialPeriod).toISOString();
-        const formtatEndPeriod = parseISO(endPeriod).toISOString();
+        const formatInitialPeriod = format(new Date(initialPeriod), 'yyyy-MM-dd\'T\'HH:mm:ss.SSSXXX');
+        const formtatEndPeriod = format(new Date(endPeriod), 'yyyy-MM-dd\'T\'HH:mm:ss.SSSXXX');
 
-        const item = vacationPlan.filter(item => isWithinInterval(initialPeriod, {
-            end: formtatEndPeriod,
-            start: formatInitialPeriod
-        }) || isWithinInterval(endPeriod, {
-            end: formtatEndPeriod,
-            start: formatInitialPeriod
+        const item = vacationPlan.filter(item => isWithinInterval(formatInitialPeriod, {
+            end: item.endPeriod,
+            start: item.initialPeriod
+        }) || isWithinInterval(formtatEndPeriod, {
+            end: item.endPeriod,
+            start: item.initialPeriod
         }))
 
         return item;
     }
 
     const createPlan = async (vacation : HolidaysServiceProps) => {
-        await createVacationPlan(vacation);
+        try {
+            await createVacationPlan(vacation);
+            setVacationPlan((prev) => [...prev, vacation]);
+        } catch (error) {
+            console.error('Erro ao criar plano de férias:', error);
+        }
     }
 
     const deletePlan = async (vacation : HolidaysServiceProps) => {
-        await deleteVacationPlan(vacation)
-            .then(() => {
-                // setVacationPlan()
-            })
-        SheetCalendarToogle();
+        const newArray = vacationPlan.filter((item) => item.id !== vacation.id);
+        try {
+            await deleteVacationPlan(vacation);
+            setVacationPlan(newArray);
+            SheetCalendarToogle();
+        } catch (error) {
+            console.error('Erro ao apagar plano de férias:', error);
+        }
     }
 
     const updatePlan = async (vacation : HolidaysServiceProps) => {
-        console.log('atualiza')
-        setEditData(vacation);
-        SheetCalendarToogle();
-        ModalCalendarToogle();
+        try {
+            await updateVacationPlan(vacation);
+            setVacationPlan((prev) => {
+                const updatedVacationPlan = prev.map(item => {
+                    if (item.id === vacation.id) {
+                        return { ...item, ...vacation };
+                    }
+                    return item;
+                });
+                return updatedVacationPlan;
+            });
+        } catch (error) {
+            console.error('Erro ao atualizar plano de férias:', error);
+        }
     }
 
     const value = useMemo(() => ({

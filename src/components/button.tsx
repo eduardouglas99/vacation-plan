@@ -3,9 +3,12 @@ import { useContext } from "react";
 import styled from "styled-components";
 
 export default function Button() {
-    const { ModalCalendarToogle } = useContext(CalendarContext);
+    const { ModalCalendarToogle, setEditData } = useContext(CalendarContext);
     return (
-        <ButtonHome title="New vacation plan" onClick={ModalCalendarToogle}>New vacation plan</ButtonHome>
+        <ButtonHome title="New vacation plan" onClick={() => {
+            ModalCalendarToogle();   
+            setEditData(null);
+        }}>New vacation plan</ButtonHome>
     )
 }
 
