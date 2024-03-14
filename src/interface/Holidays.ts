@@ -12,6 +12,6 @@ export type HolidaysServiceProps = {
     title: string,
     description: string,
     location: string,
-    initialPeriod: Date,
-    endPeriod: Date,
+    initialPeriod: string,
+    endPeriod: string,
 }

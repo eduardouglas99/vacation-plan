@@ -33,8 +33,8 @@ export default function Calendar() {
             title: 'ferias coletivas',
             participant: 'anselmo', 
             description: 'ex1',
-            initialPeriod: new Date('2024-04-02T03:00:00.000Z'),
-            endPeriod: new Date('2024-04-10T03:00:00.000Z'),
+            initialPeriod: '2024-04-02T03:00:00.000Z',
+            endPeriod: '2024-04-10T03:00:00.000Z',
             location: 'lisboa'
         },
         {
@@ -42,8 +42,8 @@ export default function Calendar() {
             title: 'ferias 3 semanas',
             participant: 'lurdes', 
             description: 'ex2',
-            initialPeriod: new Date('2024-03-18T03:00:00.000Z'),
-            endPeriod: new Date('2024-03-20T03:00:00.000Z'),
+            initialPeriod: '2024-03-18T03:00:00.000Z',
+            endPeriod: '2024-03-20T03:00:00.000Z',
             location: 'japão'
         },
         {
@@ -51,8 +51,8 @@ export default function Calendar() {
             title: 'periodo sabatico',
             participant: 'joaquin, plabo, tavares', 
             description: 'ex3',
-            initialPeriod: new Date('2024-05-15T03:00:00.000Z'),
-            endPeriod: new Date('2024-05-15T03:00:00.000Z'),
+            initialPeriod: '2024-05-15T03:00:00.000Z',
+            endPeriod: '2024-05-15T03:00:00.000Z',
             location: 'brasil'
         },
         {
@@ -60,8 +60,8 @@ export default function Calendar() {
             title: 'pascoa seletiva',
             description: 'coelho',
             location: 'porto das galinhas',
-            initialPeriod: new Date('2024-03-11T03:00:00.000Z'),
-            endPeriod: new Date('2024-03-12T03:00:00.000Z'),
+            initialPeriod: '2024-05-28T03:00:00.000Z',
+            endPeriod: '2024-06-01T03:00:00.000Z',
             participant: 'Gilberto'
         }
     ]
@@ -85,12 +85,15 @@ export default function Calendar() {
         const range_end: Date[] = [];
 
         data.map((holiday) => {
-            if (holiday.initialPeriod.toISOString() === holiday.endPeriod.toISOString()) {
-                booked.push(holiday.initialPeriod);
+            if (holiday.initialPeriod === holiday.endPeriod) {
+                const transformToDate = new Date(holiday.initialPeriod);
+                booked.push(transformToDate);
                 return;
             }
-            range_start.push(holiday.initialPeriod);
-            range_end.push(holiday.endPeriod);
+            const transformEndPeriod = new Date(holiday.endPeriod);
+            const transformInitialPeriod = new Date(holiday.initialPeriod);
+            range_start.push(transformInitialPeriod);
+            range_end.push(transformEndPeriod);
             range_middle.push(...eachDayOfInterval({
                 end: subDays(holiday.endPeriod, 1),
                 start: addDays(holiday.initialPeriod, 1)
@@ -106,29 +109,29 @@ export default function Calendar() {
     }
 
     const SearchInformationPeriod = (day: Date) => {
-        const newDateFormat = day.toDateString();
-        const haveHolidayPlan = holidays.find(d => {
-            d.date === newDateFormat
-        });
+        const newDateFormat = day.toISOString();
+        const haveHolidayPlan = holidays.find(d => d.date === newDateFormat);
         const haveHolidayRegister = holidaysRegister.find(date => 
-            date.initialPeriod.toDateString() === newDateFormat || 
-            date.endPeriod.toDateString() === newDateFormat ||
+            date.initialPeriod === newDateFormat || 
+            date.endPeriod === newDateFormat ||
             isWithinInterval(newDateFormat, {
                 end: date.endPeriod,
-                start: date.initialPeriod
+                start: date.initialPeriod 
             }));
 
         if(!haveHolidayPlan && !haveHolidayRegister){
             setHolidayRegister(undefined);
             setHolidayData(undefined);
+            console.log('nenhum')
             return;
         }
-
+        console.log('abre o form')
         SheetCalendarToogle();
 
         if (!haveHolidayPlan) { 
             setHolidayData(undefined);
         } else {
+            console.log('entrei nos feriados', haveHolidayPlan)
             setHolidayData(haveHolidayPlan);
         }
         
@@ -136,6 +139,7 @@ export default function Calendar() {
             setHolidayRegister(undefined);
         } else {
             setHolidayRegister(haveHolidayRegister); 
+            console.log('entrei nos registrados')
         }
     }
 

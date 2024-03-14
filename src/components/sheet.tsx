@@ -8,7 +8,7 @@ import { FaUserCheck } from "react-icons/fa";
 import { FaFileAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
-
+import { format } from "date-fns";
 export default function Sheet() {
     const { isSheetOpen, SheetCalendarToogle, holidayData, holidayRegister } = useContext(CalendarContext);
 
@@ -41,7 +41,7 @@ export default function Sheet() {
                             <TextGroup>
                                 <FaCalendar />
                                 <b>Date:</b> 
-                                <span>{holidayData.date}</span>
+                                <span>{format(holidayData.date, "dd/MM/yyyy")}</span>
                             </TextGroup>
                             <LineBlock></LineBlock>
                         </InfoGroup>
@@ -77,13 +77,13 @@ export default function Sheet() {
                             <TextGroup>
                                 <FaCalendar />
                                 <b>From:</b> 
-                                <span>{holidayRegister.initialPeriod.toLocaleDateString()}</span>
+                                <span>{format(holidayRegister.initialPeriod, "dd/MM/yyyy")}</span>
                             </TextGroup>
 
                             <TextGroup>
                                 <FaCalendar />
                                 <b>To:</b> 
-                                <span>{holidayRegister.endPeriod.toLocaleDateString()}</span>
+                                <span>{format(holidayRegister.endPeriod, "dd/MM/yyyy")}</span>
                             </TextGroup> 
                         </InfoGroup>
                     ) : null}
@@ -200,6 +200,44 @@ const TextGroup = styled.div`
         max-width: 100%;
         width: 100%;
         word-wrap: break-word;
+        max-height: 80px;
+        overflow: overlay;
+        /* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
+        /** {
+        scrollbar-width: thin;
+        scrollbar-color: #999999 #000000;
+        }*/
+
+        /* Chrome, Edge and Safari */
+        &::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+        }
+        &::-webkit-scrollbar-track {
+        border-radius: 20px;
+        background-color: #000000;
+        }
+
+        &::-webkit-scrollbar-track:hover {
+        background-color: #B8C0C2;
+        }
+
+        &::-webkit-scrollbar-track:active {
+        background-color: #B8C0C2;
+        }
+
+        &::-webkit-scrollbar-thumb {
+        border-radius: 13px;
+        background-color: #999999;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+        background-color: #C1C1C1;
+        }
+
+        &::-webkit-scrollbar-thumb:active {
+        background-color: #616161;
+        }
     }
 `
 
