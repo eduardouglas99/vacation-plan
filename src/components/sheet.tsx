@@ -10,7 +10,7 @@ import { FaEdit } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import { format } from "date-fns";
 export default function Sheet() {
-    const { isSheetOpen, SheetCalendarToogle, holidayData, holidayRegister, deletePlan } = useContext(CalendarContext);
+    const { isSheetOpen, SheetCalendarToogle, holidayData, holidayRegister, deletePlan, updatePlan } = useContext(CalendarContext);
 
     if (!isSheetOpen) {
         return null;
@@ -52,7 +52,7 @@ export default function Sheet() {
                             <TextGroupTitle>
                                 <h2>Title: {holidayRegister.title}</h2>
                                 <TextGroupIcons>
-                                    <FaEdit title="Edit plan"/>
+                                    <FaEdit title="Edit plan" onClick={() => updatePlan(holidayRegister)} />
                                     <FaTrashAlt title="Remove plan" onClick={() => deletePlan(holidayRegister)}/>
                                 </TextGroupIcons>
                             </TextGroupTitle>

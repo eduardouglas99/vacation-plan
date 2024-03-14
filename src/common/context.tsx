@@ -1,6 +1,6 @@
 import { EmployeesProps, HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
-import { createVacationPlan, deleteVacationPlan } from "@/services/vacationPlan.service";
-import { formatISO, parseISO } from "date-fns";
+import { createVacationPlan, deleteVacationPlan, updateVacationPlan } from "@/services/vacationPlan.service";
+import { formatISO, isWithinInterval, parseISO } from "date-fns";
 import { SetStateAction, createContext, useMemo, useState } from "react";
 
 type CalendarContextProps = {
@@ -22,7 +22,10 @@ type CalendarContextProps = {
     setEmployees: React.Dispatch<SetStateAction<EmployeesProps[]>>
     createPlan: (vacation: HolidaysServiceProps) => void,
     deletePlan: (vacation: HolidaysServiceProps) => void,
-    genericFilterPeriod: (initialPeriod: string, endPeriod: string) => HolidaysServiceProps[]
+    updatePlan: (vacation: HolidaysServiceProps) => void,
+    genericFilterPeriod: (initialPeriod: string, endPeriod: string) => HolidaysServiceProps[],
+    editData: HolidaysServiceProps | null,
+    setEditData: React.Dispatch<SetStateAction<HolidaysServiceProps | null>>
 }
 
 type CalendarProps = {
@@ -43,6 +46,8 @@ export function CalendarProvider({children} : CalendarProps) {
     const [holidays, setHolidays] = useState<HolidaysPlanProps[]>([]);
     const [vacationPlan, setVacationPlan] = useState<HolidaysServiceProps[]>([]);
     const [employees, setEmployees] = useState<EmployeesProps[]>([]);
+    const [editData, setEditData] = useState<HolidaysServiceProps | null>(null);
+
 
     const ModalCalendarToogle = () => {
         setIsModalOpen(current => !current);
@@ -54,32 +59,47 @@ export function CalendarProvider({children} : CalendarProps) {
     }
 
     const genericFilterPeriod = (initialPeriod: string, endPeriod: string) => {
-        const format = parseISO(initialPeriod).getTime();
-        const formt2 = parseISO(endPeriod).getTime();
-        const item = vacationPlan.filter(item => parseISO(item.initialPeriod).getTime() === format || 
-        parseISO(item.endPeriod).getTime() === formt2)
+        const formatInitialPeriod = parseISO(initialPeriod).toISOString();
+        const formtatEndPeriod = parseISO(endPeriod).toISOString();
 
-        console.log(format, formt2)
+        const item = vacationPlan.filter(item => isWithinInterval(initialPeriod, {
+            end: formtatEndPeriod,
+            start: formatInitialPeriod
+        }) || isWithinInterval(endPeriod, {
+            end: formtatEndPeriod,
+            start: formatInitialPeriod
+        }))
+
         return item;
     }
 
-    const createPlan = (vacation : HolidaysServiceProps) => {
-        createVacationPlan(vacation);
+    const createPlan = async (vacation : HolidaysServiceProps) => {
+        await createVacationPlan(vacation);
     }
 
-    const deletePlan = (vacation : HolidaysServiceProps) => {
-        deleteVacationPlan(vacation);
+    const deletePlan = async (vacation : HolidaysServiceProps) => {
+        await deleteVacationPlan(vacation)
+            .then(() => {
+                // setVacationPlan()
+            })
         SheetCalendarToogle();
+    }
+
+    const updatePlan = async (vacation : HolidaysServiceProps) => {
+        console.log('atualiza')
+        setEditData(vacation);
+        SheetCalendarToogle();
+        ModalCalendarToogle();
     }
 
     const value = useMemo(() => ({
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
         holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays,vacationPlan, setVacationPlan,
-        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan
+        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan, updatePlan, editData, setEditData
     }), [
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
         holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays, vacationPlan, setVacationPlan,
-        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan
+        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan, updatePlan, editData, setEditData
     ])
 
     return(

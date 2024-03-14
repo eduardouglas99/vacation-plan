@@ -45,3 +45,19 @@ export async function deleteVacationPlan(vacation: HolidaysServiceProps) {
         console.log(error);
     })
 }
+
+export async function updateVacationPlan(vacation: HolidaysServiceProps) {
+    return await fetch(`${VACATION_PLAN_API_URL}/vacationPlan/${vacation.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(vacation),
+    })
+    .then((response) => {
+        console.log(response)
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+}
