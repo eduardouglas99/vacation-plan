@@ -1,4 +1,4 @@
-import { CalendarProps, HolidaysPlanProps } from "@/interface/Holidays";
+import { HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
 import { SetStateAction, createContext, useMemo, useState } from "react";
 
 type CalendarContextProps = {
@@ -8,21 +8,16 @@ type CalendarContextProps = {
     isSheetOpen: boolean,
     setIsSheetOpen: React.Dispatch<SetStateAction<boolean>>,
     SheetCalendarToogle: () => void,
-
     holidayData: HolidaysPlanProps | undefined,
     setHolidayData: React.Dispatch<SetStateAction<HolidaysPlanProps | undefined>>,
     holidayRegister: HolidaysServiceProps | undefined,
-    setHolidayRegister: React.Dispatch<SetStateAction<HolidaysServiceProps | undefined>>
+    setHolidayRegister: React.Dispatch<SetStateAction<HolidaysServiceProps | undefined>>,
+    holidays: HolidaysPlanProps[],
+    setHolidays: React.Dispatch<SetStateAction<HolidaysPlanProps[]>>
 }
 
-type HolidaysServiceProps = {
-    id: number,
-    participant: string,
-    title: string,
-    description: string,
-    location: string,
-    initialPeriod: Date,
-    endPeriod: Date,
+type CalendarProps = {
+    children: React.ReactNode;
 }
 
 const CalendarContext = createContext({} as CalendarContextProps);
@@ -34,6 +29,7 @@ export function CalendarProvider({children} : CalendarProps) {
     const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
     const [holidayData, setHolidayData] = useState<HolidaysPlanProps>();
     const [holidayRegister, setHolidayRegister] = useState<HolidaysServiceProps>();
+    const [holidays, setHolidays] = useState<HolidaysPlanProps[]>([]);
 
     const ModalCalendarToogle = () => {
         setIsModalOpen(current => !current);
@@ -46,10 +42,10 @@ export function CalendarProvider({children} : CalendarProps) {
 
     const value = useMemo(() => ({
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
-        holidayData, setHolidayData, holidayRegister, setHolidayRegister
+        holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays
     }), [
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
-        holidayData, setHolidayData, holidayRegister, setHolidayRegister
+        holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays
     ])
 
     return(

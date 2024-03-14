@@ -49,7 +49,6 @@ export default function Modal() {
     })
 
     const onSubmit = (data: any) => {
-        console.log(data);
         reset();
     }
 

@@ -41,7 +41,7 @@ export default function Sheet() {
                             <TextGroup>
                                 <FaCalendar />
                                 <b>Date:</b> 
-                                <span>{holidayData.date.toLocaleDateString()}</span>
+                                <span>{holidayData.date}</span>
                             </TextGroup>
                             <LineBlock></LineBlock>
                         </InfoGroup>

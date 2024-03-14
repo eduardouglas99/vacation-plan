@@ -7,49 +7,31 @@ import styled from 'styled-components';
 import { eachDayOfInterval, addDays, subDays, isWithinInterval } from 'date-fns';
 import CalendarContext from '@/common/context';
 import { useMediaQuery } from 'react-responsive';
-
-type HolidaysPlanProps = {
-    id: number,
-    title: string,
-    description: string,
-    location: string,
-    date: Date
-}
-
-type HolidaysServiceProps = {
-    id: number,
-    name: string,
-    title: string,
-    description: string,
-    location: string,
-    initialPeriod: Date,
-    endPeriod: Date,
-}
-
+import { HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
 
 export default function Calendar() {
-    const data: HolidaysPlanProps[] = [
-        {
-            id: 0,
-            title: 'Feriado ex 1',
-            description: 'feriado homenagem a fulano',
-            location: 'algarves',
-            date: new Date('2024-03-10T03:00:00.000Z')
-        },
-        {
-            id: 1,
-            title: 'feriado exemplo 2',
-            description: 'feriado dia das mulheres',
-            location: 'porto',
-            date: new Date('2024-03-11T03:00:00.000Z')
-        }
-    ]
+    // const data: HolidaysPlanProps[] = [
+    //     {
+    //         id: 0,
+    //         name: 'Feriado ex 1',
+    //         description: 'feriado homenagem a fulano',
+    //         location: 'algarves',
+    //         date: new Date('2024-03-10T03:00:00.000Z')
+    //     },
+    //     {
+    //         id: 1,
+    //         name: 'feriado exemplo 2',
+    //         description: 'feriado dia das mulheres',
+    //         location: 'porto',
+    //         date: new Date('2024-03-11T03:00:00.000Z')
+    //     }
+    // ]
 
     const holidaysRegister: HolidaysServiceProps[] = [
         {
             id: 0,
             title: 'ferias coletivas',
-            name: 'anselmo', 
+            participant: 'anselmo', 
             description: 'ex1',
             initialPeriod: new Date('2024-04-02T03:00:00.000Z'),
             endPeriod: new Date('2024-04-10T03:00:00.000Z'),
@@ -58,7 +40,7 @@ export default function Calendar() {
         {
             id: 1,
             title: 'ferias 3 semanas',
-            name: 'lurdes', 
+            participant: 'lurdes', 
             description: 'ex2',
             initialPeriod: new Date('2024-03-18T03:00:00.000Z'),
             endPeriod: new Date('2024-03-20T03:00:00.000Z'),
@@ -67,7 +49,7 @@ export default function Calendar() {
         {
             id: 2,
             title: 'periodo sabatico',
-            name: 'joaquin, plabo, tavares', 
+            participant: 'joaquin, plabo, tavares', 
             description: 'ex3',
             initialPeriod: new Date('2024-05-15T03:00:00.000Z'),
             endPeriod: new Date('2024-05-15T03:00:00.000Z'),
@@ -80,7 +62,7 @@ export default function Calendar() {
             location: 'porto das galinhas',
             initialPeriod: new Date('2024-03-11T03:00:00.000Z'),
             endPeriod: new Date('2024-03-12T03:00:00.000Z'),
-            name: 'Gilberto'
+            participant: 'Gilberto'
         }
     ]
 
@@ -93,7 +75,7 @@ export default function Calendar() {
     const endStyle = { background: '#ff000024', borderBottomRightRadius: '50%',
     borderTopRightRadius: '50%'  };
     const middleStyle = { background: '#ff000024' };
-    const { SheetCalendarToogle, ModalCalendarToogle, holidayData, setHolidayData, holidayRegister, setHolidayRegister } = useContext(CalendarContext);
+    const { SheetCalendarToogle , setHolidayData , setHolidayRegister, holidays } = useContext(CalendarContext);
 
 
     const splitArray = (data: HolidaysServiceProps[]) => {
@@ -125,7 +107,9 @@ export default function Calendar() {
 
     const SearchInformationPeriod = (day: Date) => {
         const newDateFormat = day.toDateString();
-        const haveHolidayPlan = data.find(d => d.date.toDateString() === newDateFormat);
+        const haveHolidayPlan = holidays.find(d => {
+            d.date === newDateFormat
+        });
         const haveHolidayRegister = holidaysRegister.find(date => 
             date.initialPeriod.toDateString() === newDateFormat || 
             date.endPeriod.toDateString() === newDateFormat ||
@@ -159,11 +143,12 @@ export default function Calendar() {
 
 
     useEffect(() => {
-        data.map((day: HolidaysPlanProps) => {
-            setDays(state => [...state, day.date]);
+        holidays.map((day: HolidaysPlanProps) => {
+            const dataObject = new Date(day.date);
+            setDays(state => [...state, dataObject]);
             setDomLoaded(true);
         })    
-    }, [])
+    }, [holidays])
     
     const isMobile = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 768px)' });
     const isTablet = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 980px)' });
