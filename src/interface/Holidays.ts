@@ -15,3 +15,16 @@ export type HolidaysServiceProps = {
     initialPeriod: string,
     endPeriod: string,
 }
+
+export type EmployeesProps = {
+    id: number,
+    label: string, 
+    value: string,
+    jobTitle: string
+}
+
+export type ResponseDataProps = {
+    responseHolidays: HolidaysPlanProps[],
+    responseVacationPlan: HolidaysServiceProps[],
+    responseEmployees: EmployeesProps[]
+}

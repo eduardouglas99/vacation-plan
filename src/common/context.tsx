@@ -1,4 +1,4 @@
-import { HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
+import { EmployeesProps, HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
 import { SetStateAction, createContext, useMemo, useState } from "react";
 
 type CalendarContextProps = {
@@ -14,6 +14,10 @@ type CalendarContextProps = {
     setHolidayRegister: React.Dispatch<SetStateAction<HolidaysServiceProps | undefined>>,
     holidays: HolidaysPlanProps[],
     setHolidays: React.Dispatch<SetStateAction<HolidaysPlanProps[]>>
+    vacationPlan: HolidaysServiceProps[],
+    setVacationPlan: React.Dispatch<SetStateAction<HolidaysServiceProps[]>>
+    employees: EmployeesProps[],
+    setEmployees: React.Dispatch<SetStateAction<EmployeesProps[]>>
 }
 
 type CalendarProps = {
@@ -30,6 +34,8 @@ export function CalendarProvider({children} : CalendarProps) {
     const [holidayData, setHolidayData] = useState<HolidaysPlanProps>();
     const [holidayRegister, setHolidayRegister] = useState<HolidaysServiceProps>();
     const [holidays, setHolidays] = useState<HolidaysPlanProps[]>([]);
+    const [vacationPlan, setVacationPlan] = useState<HolidaysServiceProps[]>([]);
+    const [employees, setEmployees] = useState<EmployeesProps[]>([]);
 
     const ModalCalendarToogle = () => {
         setIsModalOpen(current => !current);
@@ -42,10 +48,12 @@ export function CalendarProvider({children} : CalendarProps) {
 
     const value = useMemo(() => ({
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
-        holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays
+        holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays,vacationPlan, setVacationPlan,
+        employees, setEmployees
     }), [
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
-        holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays
+        holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays, vacationPlan, setVacationPlan,
+        employees, setEmployees
     ])
 
     return(

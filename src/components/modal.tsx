@@ -26,16 +26,16 @@ const schema = z.object({
     path: ['endPeriod']
 })
 
-const participants = [
-    { label: 'Sofia Santos', value: 'Sofia Santos' },
-    { label: 'Gabriel Oliveira', value: 'Gabriel Oliveira' },
-    { label: 'Laura Pereira', value: 'Laura Pereira' },
-    { label: 'Pedro Almeida', value: 'Pedro Almeida' },
-    { label: 'Isabela Costa', value: 'Isabela Costa' }
-];
+// const participants = [
+//     { label: 'Sofia Santos', value: 'Sofia Santos' },
+//     { label: 'Gabriel Oliveira', value: 'Gabriel Oliveira' },
+//     { label: 'Laura Pereira', value: 'Laura Pereira' },
+//     { label: 'Pedro Almeida', value: 'Pedro Almeida' },
+//     { label: 'Isabela Costa', value: 'Isabela Costa' }
+// ];
 
 export default function Modal() {
-    const { isModalOpen, ModalCalendarToogle } = useContext(CalendarContext);
+    const { isModalOpen, ModalCalendarToogle, employees } = useContext(CalendarContext);
     const { register, handleSubmit, control, reset, formState: { errors } } = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
         defaultValues: {
@@ -73,7 +73,7 @@ export default function Modal() {
                                 }}
                                 render={({ field: { onChange, value } }) => (
                                     <MultiSelect 
-                                        options={participants}
+                                        options={employees}
                                         value={value}
                                         onChange={onChange}
                                         labelledBy="Select"
