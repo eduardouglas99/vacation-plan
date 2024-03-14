@@ -6,6 +6,8 @@ import { useForm, Controller } from 'react-hook-form';
 import * as z from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MultiSelect } from "react-multi-select-component";
+import { EmployeesProps, HolidaysServiceProps } from "@/interface/Holidays";
+import { parseISO } from "date-fns";
 
 const schema = z.object({
     names: z.array(z.object({
@@ -26,16 +28,8 @@ const schema = z.object({
     path: ['endPeriod']
 })
 
-// const participants = [
-//     { label: 'Sofia Santos', value: 'Sofia Santos' },
-//     { label: 'Gabriel Oliveira', value: 'Gabriel Oliveira' },
-//     { label: 'Laura Pereira', value: 'Laura Pereira' },
-//     { label: 'Pedro Almeida', value: 'Pedro Almeida' },
-//     { label: 'Isabela Costa', value: 'Isabela Costa' }
-// ];
-
 export default function Modal() {
-    const { isModalOpen, ModalCalendarToogle, employees } = useContext(CalendarContext);
+    const { isModalOpen, ModalCalendarToogle, employees, createPlan, genericFilterPeriod } = useContext(CalendarContext);
     const { register, handleSubmit, control, reset, formState: { errors } } = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
         defaultValues: {
@@ -49,7 +43,15 @@ export default function Modal() {
     })
 
     const onSubmit = (data: any) => {
+        const createVacation: HolidaysServiceProps = {
+            ...data,
+            initialPeriod: parseISO(data.initialPeriod),
+            endPeriod: parseISO(data.endPeriod),
+        };
+        createPlan(createVacation);
         reset();
+        ModalCalendarToogle();
+        return;
     }
 
     if (!isModalOpen) {

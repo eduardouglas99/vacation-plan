@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
                 responseVacationPlan,
                 responseEmployees
             }
-        }
+        },
     };
 };
 

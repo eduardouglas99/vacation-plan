@@ -65,7 +65,7 @@ export default function Sheet() {
                             <TextGroup>
                                 <FaUserCheck />
                                 <b>Participants:</b> 
-                                <span>{holidayRegister.participant}</span>
+                                <span>{holidayRegister.names.map(name => name.label).join(', ')}</span>
                             </TextGroup> 
 
                             <TextGroup>

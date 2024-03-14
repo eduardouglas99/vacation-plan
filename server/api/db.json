@@ -1,10 +1,10 @@
 {
-  "holidays" : [
+  "holidays": [
     {
       "date": "2024-01-01T03:00:00.000Z",
       "localName": "Ano Novo",
       "name": "New Year's Day",
-      "description": "Celebrates the beginning of the new year with festivities and gatherings." ,
+      "description": "Celebrates the beginning of the new year with festivities and gatherings.",
       "location": "Portugal",
       "countryCode": "PT",
       "fixed": false,
@@ -264,51 +264,126 @@
   ],
   "vacationPlan": [
     {
-      "id": 1,
-      "participant": "Sofia Santos",
-      "title": "Collective holidays",
-      "description": "Collective holidays in Portugal refer to periods when a group of workers within a company or sector take their vacation days simultaneously. These holidays are typically planned in advance and agreed upon between employers and employees. Collective holidays allow for coordinated breaks, ensuring that essential services and operations continue smoothly during these periods.",
-      "location": "Portugal",
-      "initialPeriod": "2024-04-02T03:00:00.000Z",
-      "endPeriod": "2024-04-26T03:00:00.000Z"
+      "id": "4de1",
+      "names": [
+        {
+          "label": "Gabriel Oliveira",
+          "value": "Gabriel Oliveira"
+        },
+        {
+          "label": "Pedro Almeida",
+          "value": "Pedro Almeida"
+        },
+        {
+          "label": "Isabela Costa",
+          "value": "Isabela Costa"
+        }
+      ],
+      "initialPeriod": "2024-03-01T03:00:00.000Z",
+      "endPeriod": "2024-03-04T03:00:00.000Z",
+      "title": "teste",
+      "description": "teste"
+    },
+    {
+      "id": "b06d",
+      "names": [
+        {
+          "label": "Laura Pereira",
+          "value": "Laura Pereira"
+        },
+        {
+          "label": "Pedro Almeida",
+          "value": "Pedro Almeida"
+        }
+      ],
+      "initialPeriod": "2024-03-25T03:00:00.000Z",
+      "endPeriod": "2024-03-28T03:00:00.000Z",
+      "title": "teste",
+      "description": "teste"
+    },
+    {
+      "id": "fd73",
+      "names": [
+        {
+          "label": "Gabriel Oliveira",
+          "value": "Gabriel Oliveira"
+        }
+      ],
+      "initialPeriod": "2024-03-05T03:00:00.000Z",
+      "endPeriod": "2024-03-08T03:00:00.000Z",
+      "title": "teste",
+      "description": "test"
+    },
+    {
+      "id": "b013",
+      "names": [
+        {
+          "label": "Sofia Santos",
+          "value": "Sofia Santos"
+        },
+        {
+          "label": "Gabriel Oliveira",
+          "value": "Gabriel Oliveira"
+        },
+        {
+          "label": "Laura Pereira",
+          "value": "Laura Pereira"
+        },
+        {
+          "label": "Pedro Almeida",
+          "value": "Pedro Almeida"
+        },
+        {
+          "label": "Isabela Costa",
+          "value": "Isabela Costa"
+        },
+        {
+          "label": "Carlos de Almeida",
+          "value": "Carlos de Almeida"
+        }
+      ],
+      "initialPeriod": "2024-03-01T03:00:00.000Z",
+      "endPeriod": "2024-03-10T03:00:00.000Z",
+      "title": "teste",
+      "description": "teste"
     }
   ],
   "employees": [
-    { 
+    {
       "id": 1,
-      "label": "Sofia Santos", 
+      "label": "Sofia Santos",
       "value": "Sofia Santos",
       "jobTitle": "Boss"
     },
-    { 
+    {
       "id": 2,
-      "label": "Gabriel Oliveira", 
+      "label": "Gabriel Oliveira",
       "value": "Gabriel Oliveira",
-      "jobTitle": "Front-end" 
+      "jobTitle": "Front-end"
     },
-    { 
+    {
       "id": 3,
       "label": "Laura Pereira",
       "value": "Laura Pereira",
-      "jobTitle": "Front-end" 
+      "jobTitle": "Front-end"
     },
-    { 
+    {
       "id": 4,
-      "label": "Pedro Almeida", 
+      "label": "Pedro Almeida",
       "value": "Pedro Almeida",
-      "jobTitle": "Back-end" 
+      "jobTitle": "Back-end"
     },
-    { 
+    {
       "id": 5,
-      "label": "Isabela Costa", 
+      "label": "Isabela Costa",
       "value": "Isabela Costa",
-      "jobTitle": "Design" 
+      "jobTitle": "Design"
     },
-    { 
+    {
       "id": 6,
-      "label": "Carlos de Almeida", 
+      "label": "Carlos de Almeida",
       "value": "Carlos de Almeida",
-      "jobTitle": "IT support specialis" 
+      "jobTitle": "IT support specialis"
     }
   ]
 }

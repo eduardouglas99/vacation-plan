@@ -1,4 +1,6 @@
 import { EmployeesProps, HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
+import { createVacationPlan } from "@/services/vacationPlan.service";
+import { formatISO, parseISO } from "date-fns";
 import { SetStateAction, createContext, useMemo, useState } from "react";
 
 type CalendarContextProps = {
@@ -18,6 +20,8 @@ type CalendarContextProps = {
     setVacationPlan: React.Dispatch<SetStateAction<HolidaysServiceProps[]>>
     employees: EmployeesProps[],
     setEmployees: React.Dispatch<SetStateAction<EmployeesProps[]>>
+    createPlan: (vacation: HolidaysServiceProps) => void,
+    genericFilterPeriod: (initialPeriod: string, endPeriod: string) => HolidaysServiceProps[]
 }
 
 type CalendarProps = {
@@ -31,8 +35,10 @@ export default CalendarContext;
 export function CalendarProvider({children} : CalendarProps) {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
+
     const [holidayData, setHolidayData] = useState<HolidaysPlanProps>();
     const [holidayRegister, setHolidayRegister] = useState<HolidaysServiceProps>();
+
     const [holidays, setHolidays] = useState<HolidaysPlanProps[]>([]);
     const [vacationPlan, setVacationPlan] = useState<HolidaysServiceProps[]>([]);
     const [employees, setEmployees] = useState<EmployeesProps[]>([]);
@@ -46,14 +52,28 @@ export function CalendarProvider({children} : CalendarProps) {
 
     }
 
+    const genericFilterPeriod = (initialPeriod: string, endPeriod: string) => {
+        const format = parseISO(initialPeriod).getTime();
+        const formt2 = parseISO(endPeriod).getTime();
+        const item = vacationPlan.filter(item => parseISO(item.initialPeriod).getTime() === format || 
+        parseISO(item.endPeriod).getTime() === formt2)
+
+        console.log(format, formt2)
+        return item;
+    }
+
+    const createPlan = (vacation : HolidaysServiceProps) => {
+        createVacationPlan(vacation);
+    }
+
     const value = useMemo(() => ({
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
         holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays,vacationPlan, setVacationPlan,
-        employees, setEmployees
+        employees, setEmployees, createPlan, genericFilterPeriod
     }), [
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
         holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays, vacationPlan, setVacationPlan,
-        employees, setEmployees
+        employees, setEmployees, createPlan, genericFilterPeriod
     ])
 
     return(

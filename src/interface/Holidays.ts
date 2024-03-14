@@ -8,7 +8,7 @@ export type HolidaysPlanProps = {
 
 export type HolidaysServiceProps = {
     id: number,
-    participant: string,
+    names: {label: string, value: string}[],
     title: string,
     description: string,
     location: string,
