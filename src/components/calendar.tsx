@@ -27,44 +27,44 @@ export default function Calendar() {
     //     }
     // ]
 
-    const holidaysRegister: HolidaysServiceProps[] = [
-        {
-            id: 0,
-            title: 'ferias coletivas',
-            participant: 'anselmo', 
-            description: 'ex1',
-            initialPeriod: '2024-04-02T03:00:00.000Z',
-            endPeriod: '2024-04-10T03:00:00.000Z',
-            location: 'lisboa'
-        },
-        {
-            id: 1,
-            title: 'ferias 3 semanas',
-            participant: 'lurdes', 
-            description: 'ex2',
-            initialPeriod: '2024-03-18T03:00:00.000Z',
-            endPeriod: '2024-03-20T03:00:00.000Z',
-            location: 'japão'
-        },
-        {
-            id: 2,
-            title: 'periodo sabatico',
-            participant: 'joaquin, plabo, tavares', 
-            description: 'ex3',
-            initialPeriod: '2024-05-15T03:00:00.000Z',
-            endPeriod: '2024-05-15T03:00:00.000Z',
-            location: 'brasil'
-        },
-        {
-            id: 3,
-            title: 'pascoa seletiva',
-            description: 'coelho',
-            location: 'porto das galinhas',
-            initialPeriod: '2024-05-28T03:00:00.000Z',
-            endPeriod: '2024-06-01T03:00:00.000Z',
-            participant: 'Gilberto'
-        }
-    ]
+    // const holidaysRegister: HolidaysServiceProps[] = [
+    //     {
+    //         id: 0,
+    //         title: 'ferias coletivas',
+    //         participant: 'anselmo', 
+    //         description: 'ex1',
+    //         initialPeriod: '2024-04-02T03:00:00.000Z',
+    //         endPeriod: '2024-04-10T03:00:00.000Z',
+    //         location: 'lisboa'
+    //     },
+    //     {
+    //         id: 1,
+    //         title: 'ferias 3 semanas',
+    //         participant: 'lurdes', 
+    //         description: 'ex2',
+    //         initialPeriod: '2024-03-18T03:00:00.000Z',
+    //         endPeriod: '2024-03-20T03:00:00.000Z',
+    //         location: 'japão'
+    //     },
+    //     {
+    //         id: 2,
+    //         title: 'periodo sabatico',
+    //         participant: 'joaquin, plabo, tavares', 
+    //         description: 'ex3',
+    //         initialPeriod: '2024-05-15T03:00:00.000Z',
+    //         endPeriod: '2024-05-15T03:00:00.000Z',
+    //         location: 'brasil'
+    //     },
+    //     {
+    //         id: 3,
+    //         title: 'pascoa seletiva',
+    //         description: 'coelho',
+    //         location: 'porto das galinhas',
+    //         initialPeriod: '2024-05-28T03:00:00.000Z',
+    //         endPeriod: '2024-06-01T03:00:00.000Z',
+    //         participant: 'Gilberto'
+    //     }
+    // ]
 
     const today = new Date();
     const [days, setDays] = React.useState<Date[]>([]);
@@ -75,7 +75,7 @@ export default function Calendar() {
     const endStyle = { background: '#ff000024', borderBottomRightRadius: '50%',
     borderTopRightRadius: '50%'  };
     const middleStyle = { background: '#ff000024' };
-    const { SheetCalendarToogle , setHolidayData , setHolidayRegister, holidays } = useContext(CalendarContext);
+    const { SheetCalendarToogle , setHolidayData , setHolidayRegister, holidays, vacationPlan } = useContext(CalendarContext);
 
 
     const splitArray = (data: HolidaysServiceProps[]) => {
@@ -111,7 +111,7 @@ export default function Calendar() {
     const SearchInformationPeriod = (day: Date) => {
         const newDateFormat = day.toISOString();
         const haveHolidayPlan = holidays.find(d => d.date === newDateFormat);
-        const haveHolidayRegister = holidaysRegister.find(date => 
+        const haveHolidayRegister = vacationPlan.find(date => 
             date.initialPeriod === newDateFormat || 
             date.endPeriod === newDateFormat ||
             isWithinInterval(newDateFormat, {
@@ -122,16 +122,14 @@ export default function Calendar() {
         if(!haveHolidayPlan && !haveHolidayRegister){
             setHolidayRegister(undefined);
             setHolidayData(undefined);
-            console.log('nenhum')
             return;
         }
-        console.log('abre o form')
+
         SheetCalendarToogle();
 
         if (!haveHolidayPlan) { 
             setHolidayData(undefined);
         } else {
-            console.log('entrei nos feriados', haveHolidayPlan)
             setHolidayData(haveHolidayPlan);
         }
         
@@ -139,7 +137,6 @@ export default function Calendar() {
             setHolidayRegister(undefined);
         } else {
             setHolidayRegister(haveHolidayRegister); 
-            console.log('entrei nos registrados')
         }
     }
 
@@ -174,7 +171,7 @@ export default function Calendar() {
                     fixedWeeks
                     onDayClick={SearchInformationPeriod}
                     modifiers={
-                        splitArray(holidaysRegister)
+                        splitArray(vacationPlan)
                     }
                     modifiersStyles={{ booked: bookedStyle, range_start: startStyle, range_end: endStyle, range_middle: middleStyle  }}
                 />

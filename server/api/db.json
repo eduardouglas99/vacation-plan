@@ -265,10 +265,10 @@
   "vacationPlan": [
     {
       "id": 1,
-      "participant": "",
+      "participant": "Sofia Santos",
       "title": "Collective holidays",
       "description": "Collective holidays in Portugal refer to periods when a group of workers within a company or sector take their vacation days simultaneously. These holidays are typically planned in advance and agreed upon between employers and employees. Collective holidays allow for coordinated breaks, ensuring that essential services and operations continue smoothly during these periods.",
-      "location": "",
+      "location": "Portugal",
       "initialPeriod": "2024-04-02T03:00:00.000Z",
       "endPeriod": "2024-04-26T03:00:00.000Z"
     }
