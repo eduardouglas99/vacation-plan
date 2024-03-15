@@ -1,7 +1,9 @@
+
 import { EmployeesProps, HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
 import { createVacationPlan, deleteVacationPlan, updateVacationPlan } from "@/services/vacationPlan.service";
 import { format, isWithinInterval } from "date-fns";
 import { SetStateAction, createContext, useMemo, useState } from "react";
+import generatePDF, { Margin } from "react-to-pdf";
 
 type CalendarContextProps = {
     isModalOpen: boolean,
@@ -25,7 +27,9 @@ type CalendarContextProps = {
     updatePlan: (vacation: HolidaysServiceProps) => void,
     genericFilterPeriod: (initialPeriod: string, endPeriod: string) => HolidaysServiceProps[],
     editData: HolidaysServiceProps | null,
-    setEditData: React.Dispatch<SetStateAction<HolidaysServiceProps | null>>
+    setEditData: React.Dispatch<SetStateAction<HolidaysServiceProps | null>>,
+    holidayPDF: HolidaysServiceProps | null,
+    setHolidayPdf: React.Dispatch<SetStateAction<HolidaysServiceProps | null>>
 }
 
 type CalendarProps = {
@@ -47,6 +51,7 @@ export function CalendarProvider({children} : CalendarProps) {
     const [vacationPlan, setVacationPlan] = useState<HolidaysServiceProps[]>([]);
     const [employees, setEmployees] = useState<EmployeesProps[]>([]);
     const [editData, setEditData] = useState<HolidaysServiceProps | null>(null);
+    const [holidayPDF, setHolidayPdf] = useState<HolidaysServiceProps | null>(null);
 
 
     const ModalCalendarToogle = () => {
@@ -75,49 +80,87 @@ export function CalendarProvider({children} : CalendarProps) {
 
     const createPlan = async (vacation : HolidaysServiceProps) => {
         try {
-            await createVacationPlan(vacation);
-            setVacationPlan((prev) => [...prev, vacation]);
+            await createVacationPlan(vacation)
+                .then(() => {
+                    setVacationPlan((prev) => [...prev, vacation]);
+                    setHolidayPdf(vacation)
+
+                    // const options = {
+                    //     method: 'open',
+                    //     page: {
+                    //        // margin is in MM, default is Margin.NONE = 0
+                    //        margin: Margin.MEDIUM,
+                    //        // default is 'A4'
+                    //        format: 'A4',
+                    //        // default is 'portrait'
+                    //        orientation: 'portrait',
+                    //     }
+                    //   };
+
+                    // const getTargetElement = () => document.getElementById('content-id');
+
+                    // // const pdfData = {
+                    // //     // Inclua aqui os detalhes do plano de férias que você deseja no PDF
+                    // //     title: vacation.title,
+                    // // };
+                    // generatePDF(getTargetElement, options)
+                })
+                .catch ((error) =>  {
+                    console.error('Erro ao criar plano de férias:', error);
+                })
+
         } catch (error) {
-            console.error('Erro ao criar plano de férias:', error);
+            console.error('Erro na requisição do criar plano de férias:', error);
         }
     }
 
     const deletePlan = async (vacation : HolidaysServiceProps) => {
         const newArray = vacationPlan.filter((item) => item.id !== vacation.id);
         try {
-            await deleteVacationPlan(vacation);
-            setVacationPlan(newArray);
-            SheetCalendarToogle();
+            await deleteVacationPlan(vacation)
+            .then(() => {
+                setVacationPlan(newArray);
+                SheetCalendarToogle();
+            })
+            .catch ((error) =>  {
+                console.error('Erro ao apagar plano de férias:', error);
+            })
         } catch (error) {
-            console.error('Erro ao apagar plano de férias:', error);
+            console.error('Erro na requisição do apagar plano de férias:', error);
         }
     }
 
     const updatePlan = async (vacation : HolidaysServiceProps) => {
         try {
-            await updateVacationPlan(vacation);
-            setVacationPlan((prev) => {
-                const updatedVacationPlan = prev.map(item => {
-                    if (item.id === vacation.id) {
-                        return { ...item, ...vacation };
-                    }
-                    return item;
+            await updateVacationPlan(vacation)
+            .then(() => {
+                setVacationPlan((prev) => {
+                    const updatedVacationPlan = prev.map(item => {
+                        if (item.id === vacation.id) {
+                            return { ...item, ...vacation };
+                        }
+                        return item;
+                    });
+                    return updatedVacationPlan;
                 });
-                return updatedVacationPlan;
-            });
+            })
+            .catch ((error) =>  {
+                console.error('Erro ao atualizar plano de férias:', error);
+            })
+            
         } catch (error) {
-            console.error('Erro ao atualizar plano de férias:', error);
+            console.error('Erro na requisição do atualizar plano de férias:', error);
         }
     }
 
     const value = useMemo(() => ({
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
         holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays,vacationPlan, setVacationPlan,
-        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan, updatePlan, editData, setEditData
+        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan, updatePlan, editData, setEditData, holidayPDF, setHolidayPdf
     }), [
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
         holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays, vacationPlan, setVacationPlan,
-        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan, updatePlan, editData, setEditData
+        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan, updatePlan, editData, setEditData, holidayPDF, setHolidayPdf
     ])
 
     return(

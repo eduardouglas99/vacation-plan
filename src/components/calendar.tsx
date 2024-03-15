@@ -8,6 +8,7 @@ import { eachDayOfInterval, addDays, subDays, isWithinInterval } from 'date-fns'
 import CalendarContext from '@/common/context';
 import { useMediaQuery } from 'react-responsive';
 import { HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
+import MyPDF from './myPDF';
 
 export default function Calendar() {
     const today = new Date();
@@ -121,6 +122,8 @@ export default function Calendar() {
             <BackTodayButton disabled={isSameMonth(today, month)} onClick={() => setMonth(today)}>
                 Back to Today
             </BackTodayButton>
+
+            <MyPDF />
         </>
     )
 }
