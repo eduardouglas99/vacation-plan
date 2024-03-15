@@ -1,9 +1,8 @@
-
 import { EmployeesProps, HolidaysPlanProps, HolidaysServiceProps } from "@/interface/Holidays";
 import { createVacationPlan, deleteVacationPlan, updateVacationPlan } from "@/services/vacationPlan.service";
 import { format, isWithinInterval } from "date-fns";
 import { SetStateAction, createContext, useMemo, useState } from "react";
-import generatePDF, { Margin } from "react-to-pdf";
+import generatePDF from '../components/vacationPlanPdf';
 
 type CalendarContextProps = {
     isModalOpen: boolean,
@@ -53,7 +52,6 @@ export function CalendarProvider({children} : CalendarProps) {
     const [editData, setEditData] = useState<HolidaysServiceProps | null>(null);
     const [holidayPDF, setHolidayPdf] = useState<HolidaysServiceProps | null>(null);
 
-
     const ModalCalendarToogle = () => {
         setIsModalOpen(current => !current);
     }
@@ -83,27 +81,8 @@ export function CalendarProvider({children} : CalendarProps) {
             await createVacationPlan(vacation)
                 .then(() => {
                     setVacationPlan((prev) => [...prev, vacation]);
-                    setHolidayPdf(vacation)
-
-                    // const options = {
-                    //     method: 'open',
-                    //     page: {
-                    //        // margin is in MM, default is Margin.NONE = 0
-                    //        margin: Margin.MEDIUM,
-                    //        // default is 'A4'
-                    //        format: 'A4',
-                    //        // default is 'portrait'
-                    //        orientation: 'portrait',
-                    //     }
-                    //   };
-
-                    // const getTargetElement = () => document.getElementById('content-id');
-
-                    // // const pdfData = {
-                    // //     // Inclua aqui os detalhes do plano de férias que você deseja no PDF
-                    // //     title: vacation.title,
-                    // // };
-                    // generatePDF(getTargetElement, options)
+                    setHolidayPdf(vacation);
+                    generatePDF(vacation);
                 })
                 .catch ((error) =>  {
                     console.error('Erro ao criar plano de férias:', error);
