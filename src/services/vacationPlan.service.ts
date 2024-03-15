@@ -11,7 +11,7 @@ export async function fetchVacationPlan() {
             return response;
         })
         .catch((error) => {
-            console.log(error);
+            // console.log(error);
         })
 }
 
@@ -27,7 +27,7 @@ export async function createVacationPlan(vacation: HolidaysServiceProps) {
         console.log(response)
     })
     .catch((error) => {
-        console.log(error);
+        // console.log(error);
     })
 }
 
@@ -42,7 +42,7 @@ export async function deleteVacationPlan(vacation: HolidaysServiceProps) {
         console.log(response)
     })
     .catch((error) => {
-        console.log(error);
+        // console.log(error);
     })
 }
 
@@ -58,6 +58,6 @@ export async function updateVacationPlan(vacation: HolidaysServiceProps) {
         console.log(response)
     })
     .catch((error) => {
-        console.log(error);
+        // console.log(error);
     })
 }

@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { MultiSelect } from "react-multi-select-component";
 import { HolidaysServiceProps } from "@/interface/Holidays";
 import { format, isValid, parseISO } from "date-fns";
+import FeedbackError from "./feedbackError";
 
 const schema = z.object({
     names: z.array(z.object({
@@ -29,7 +30,7 @@ const schema = z.object({
 })
 
 export default function Modal() {
-    const { isModalOpen, ModalCalendarToogle, employees, createPlan, genericFilterPeriod, editData, setEditData, updatePlan } = useContext(CalendarContext);
+    const { isModalOpen, ModalCalendarToogle, employees, createPlan, genericFilterPeriod, editData, setEditData, updatePlan, feedbackErrorToogle } = useContext(CalendarContext);
     const { register, handleSubmit, control, reset, formState: { errors }, setValue } = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
         defaultValues: {
@@ -61,7 +62,7 @@ export default function Modal() {
                 endPeriod: parseISO(data.endPeriod),
             };
             if(responseFilter.length > 0) {
-                console.log('n pode')
+                feedbackErrorToogle();
             } else {
                 createPlan(createVacation);
                 reset();

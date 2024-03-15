@@ -1,5 +1,6 @@
 import CalendarContext from "@/common/context";
 import Calendar from "@/components/calendar";
+import FeedbackError from "@/components/feedbackError";
 import Header from "@/components/header";
 import Modal from "@/components/modal";
 import Sheet from "@/components/sheet";
@@ -39,6 +40,7 @@ export default function Home({ responseData }: { responseData: ResponseDataProps
             <Calendar />
             <Modal />
             <Sheet />
+            <FeedbackError />
         </section>
     );
 }

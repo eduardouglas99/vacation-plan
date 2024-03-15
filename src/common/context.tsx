@@ -28,7 +28,12 @@ type CalendarContextProps = {
     editData: HolidaysServiceProps | null,
     setEditData: React.Dispatch<SetStateAction<HolidaysServiceProps | null>>,
     holidayPDF: HolidaysServiceProps | null,
-    setHolidayPdf: React.Dispatch<SetStateAction<HolidaysServiceProps | null>>
+    setHolidayPdf: React.Dispatch<SetStateAction<HolidaysServiceProps | null>>,
+    isFeedbackError: boolean,
+    setFeedbackError: React.Dispatch<SetStateAction<boolean>>,
+    feedbackErrorToogle: () => void,
+    errorServerRequest: boolean,
+    setErrorServerRequest: React.Dispatch<SetStateAction<boolean>>
 }
 
 type CalendarProps = {
@@ -42,6 +47,7 @@ export default CalendarContext;
 export function CalendarProvider({children} : CalendarProps) {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
+    const [isFeedbackError, setFeedbackError] = useState<boolean>(false);
 
     const [holidayData, setHolidayData] = useState<HolidaysPlanProps>();
     const [holidayRegister, setHolidayRegister] = useState<HolidaysServiceProps>();
@@ -52,13 +58,30 @@ export function CalendarProvider({children} : CalendarProps) {
     const [editData, setEditData] = useState<HolidaysServiceProps | null>(null);
     const [holidayPDF, setHolidayPdf] = useState<HolidaysServiceProps | null>(null);
 
+    const [errorServerRequest, setErrorServerRequest] = useState<boolean>(false);
+
     const ModalCalendarToogle = () => {
         setIsModalOpen(current => !current);
     }
 
     const SheetCalendarToogle = () => {
         setIsSheetOpen(current => !current);
+    }
 
+    const feedbackErrorToogle = (erroRequest?: boolean) => {
+        if(erroRequest) {
+            setErrorServerRequest(true);
+            setFeedbackError(current => !current);
+            setTimeout(() => {
+                setFeedbackError(false);
+                setErrorServerRequest(false);
+            }, 10000)
+            return;
+        }
+        setFeedbackError(current => !current);
+        setTimeout(() => {
+            setFeedbackError(false);
+        }, 10000)
     }
 
     const genericFilterPeriod = (initialPeriod: string, endPeriod: string) => {
@@ -79,17 +102,12 @@ export function CalendarProvider({children} : CalendarProps) {
     const createPlan = async (vacation : HolidaysServiceProps) => {
         try {
             await createVacationPlan(vacation)
-                .then(() => {
-                    setVacationPlan((prev) => [...prev, vacation]);
-                    setHolidayPdf(vacation);
-                    generatePDF(vacation);
-                })
-                .catch ((error) =>  {
-                    console.error('Erro ao criar plano de férias:', error);
-                })
-
+            setVacationPlan((prev) => [...prev, vacation]);
+            setHolidayPdf(vacation);
+            generatePDF(vacation);
         } catch (error) {
-            console.error('Erro na requisição do criar plano de férias:', error);
+            setErrorServerRequest(true);
+            feedbackErrorToogle(true);
         }
     }
 
@@ -97,49 +115,43 @@ export function CalendarProvider({children} : CalendarProps) {
         const newArray = vacationPlan.filter((item) => item.id !== vacation.id);
         try {
             await deleteVacationPlan(vacation)
-            .then(() => {
-                setVacationPlan(newArray);
-                SheetCalendarToogle();
-            })
-            .catch ((error) =>  {
-                console.error('Erro ao apagar plano de férias:', error);
-            })
+            setVacationPlan(newArray);
+            SheetCalendarToogle();
         } catch (error) {
-            console.error('Erro na requisição do apagar plano de férias:', error);
+            setErrorServerRequest(true);
+            feedbackErrorToogle(true);
         }
     }
 
     const updatePlan = async (vacation : HolidaysServiceProps) => {
         try {
             await updateVacationPlan(vacation)
-            .then(() => {
-                setVacationPlan((prev) => {
-                    const updatedVacationPlan = prev.map(item => {
-                        if (item.id === vacation.id) {
-                            return { ...item, ...vacation };
-                        }
-                        return item;
-                    });
-                    return updatedVacationPlan;
+            setVacationPlan((prev) => {
+                const updatedVacationPlan = prev.map(item => {
+                    if (item.id === vacation.id) {
+                        return { ...item, ...vacation };
+                    }
+                    return item;
                 });
-            })
-            .catch ((error) =>  {
-                console.error('Erro ao atualizar plano de férias:', error);
-            })
+                return updatedVacationPlan;
+            });
             
         } catch (error) {
-            console.error('Erro na requisição do atualizar plano de férias:', error);
+            setErrorServerRequest(true);
+            feedbackErrorToogle(true);
         }
     }
 
     const value = useMemo(() => ({
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
         holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays,vacationPlan, setVacationPlan,
-        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan, updatePlan, editData, setEditData, holidayPDF, setHolidayPdf
+        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan, updatePlan, editData, setEditData, holidayPDF, setHolidayPdf,
+        isFeedbackError, setFeedbackError, feedbackErrorToogle, errorServerRequest, setErrorServerRequest
     }), [
         isModalOpen, setIsModalOpen, ModalCalendarToogle, isSheetOpen, setIsSheetOpen, SheetCalendarToogle,
         holidayData, setHolidayData, holidayRegister, setHolidayRegister, holidays, setHolidays, vacationPlan, setVacationPlan,
-        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan, updatePlan, editData, setEditData, holidayPDF, setHolidayPdf
+        employees, setEmployees, createPlan, genericFilterPeriod, deletePlan, updatePlan, editData, setEditData, holidayPDF, setHolidayPdf,
+        isFeedbackError, setFeedbackError, feedbackErrorToogle, errorServerRequest, setErrorServerRequest
     ])
 
     return(

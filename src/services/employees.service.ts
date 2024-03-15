@@ -9,6 +9,6 @@ export async function fetchEmployees() {
             return response;
         })
         .catch((error) => {
-            console.log(error);
+            // console.log(error);
         })
 }
