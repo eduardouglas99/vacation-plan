@@ -4,7 +4,7 @@ import FeedbackError from "@/components/feedbackError";
 import Header from "@/components/header";
 import Modal from "@/components/modal";
 import Sheet from "@/components/sheet";
-import { EmployeesProps, HolidaysPlanProps, ResponseDataProps } from "@/interface/Holidays";
+import { ResponseDataProps } from "@/interface/Holidays";
 import { fetchEmployees } from "@/services/employees.service";
 import { fetchHolidays } from "@/services/holidays.service";
 import { fetchVacationPlan } from "@/services/vacationPlan.service";

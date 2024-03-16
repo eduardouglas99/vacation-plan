@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { MultiSelect } from "react-multi-select-component";
 import { HolidaysServiceProps } from "@/interface/Holidays";
 import { format, isValid, parseISO } from "date-fns";
-import FeedbackError from "./feedbackError";
 
 const schema = z.object({
     names: z.array(z.object({

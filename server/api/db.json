@@ -381,28 +381,12 @@
         {
           "label": "Gabriel Oliveira",
           "value": "Gabriel Oliveira"
-        },
-        {
-          "label": "Laura Pereira",
-          "value": "Laura Pereira"
-        },
-        {
-          "label": "Pedro Almeida",
-          "value": "Pedro Almeida"
-        },
-        {
-          "label": "Isabela Costa",
-          "value": "Isabela Costa"
-        },
-        {
-          "label": "Carlos de Almeida",
-          "value": "Carlos de Almeida"
         }
       ],
-      "initialPeriod": "2024-03-04T03:00:00.000Z",
-      "endPeriod": "2024-03-10T03:00:00.000Z",
-      "title": "wddwdw",
-      "description": "dwdwdw"
+      "initialPeriod": "2024-03-12T03:00:00.000Z",
+      "endPeriod": "2024-03-14T03:00:00.000Z",
+      "title": "teste 2",
+      "description": "teste 3"
     },
     {
       "id": "9b65",

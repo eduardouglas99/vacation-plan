@@ -129,6 +129,9 @@ const BackTodayButton = styled.button`
     background: transparent;
     text-align: center;
     width: 100%;
+    &:not(:disabled) {
+        color: ${({ theme }) => theme.text};
+    }
     &:hover {
         text-decoration: underline;
     }

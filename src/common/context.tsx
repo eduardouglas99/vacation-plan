@@ -33,7 +33,7 @@ type CalendarContextProps = {
     setFeedbackError: React.Dispatch<SetStateAction<boolean>>,
     feedbackErrorToogle: () => void,
     errorServerRequest: boolean,
-    setErrorServerRequest: React.Dispatch<SetStateAction<boolean>>
+    setErrorServerRequest: React.Dispatch<SetStateAction<boolean>>,
 }
 
 type CalendarProps = {
