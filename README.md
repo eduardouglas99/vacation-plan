@@ -1,106 +1,104 @@
 # Vacation Plans
 
-Nossa solução oferece uma maneira abrangente de gerenciar as férias dos funcionários dentro da empresa. Ela inclui um calendário detalhado com todos os feriados marcados, permitindo que funcionários e administradores planejem e acompanhem os dias de férias de forma fácil. O sistema fornece informações essenciais como títulos de feriados, descrições, locais e intervalos de datas, garantindo um gerenciamento eficiente do tempo de folga dos funcionários. Com essa solução, as empresas podem otimizar o processo de planejamento de férias, minimizar conflitos de agendamento e melhorar a produtividade geral.
+Our solution provides a comprehensive way to manage employee vacations within the company. It includes a detailed calendar with all holidays marked, allowing employees and administrators to easily plan and track vacation days. The system provides essential information such as holiday titles, descriptions, locations, and date ranges, ensuring efficient management of employee time off. With this solution, companies can streamline the vacation planning process, minimize scheduling conflicts, and enhance overall productivity.
 
-## 📚 Índice 
+## 📚 Table of Contents
 
-* [Começando](#-começando)
-* [Pré-requisitos](#-pré-requisitos)
-* [Instalação e configuração](#-instalação-e-configuração)
-* [Executando o projeto](#-executando-o-projeto)
-* [Acesso ao Projeto](#-acesso-ao-projeto)
-* [Executando os testes](#-executando-os-testes)
-* [Construído com](#-construído-com)
-* [Autor](#-autor)
-* [Licença](#-licença)
+* [Getting Started](#-getting-started)
+* [Prerequisites](#-prerequisites)
+* [Installation and Configuration](#-installation-and-configuration)
+* [Running the Project](#-running-the-project)
+* [Project Access](#-project-access)
+* [Running Tests](#-running-tests)
+* [Built With](#-built-with)
+* [Author](#-author)
+* [License](#-license)
 
-## 🚀 Começando
+## 🚀 Getting Started
 
-Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Consulte **[Instalação e configuração](#-instalação-e-configuração)** para saber como implantar o projeto.
+Check **[Installation and Configuration](#-installation-and-configuration)** to know how to deploy the project.
 
-## 📋 Pré-requisitos
+## 📋 Prerequisites
 
 - Node.js
-- npm (gerenciador de pacotes)
+- npm (package manager)
 
+## 🔧 Installation and Configuration
 
-## 🔧 Instalação e configuração
-
-1. Clone o repositório:
+1. Clone the repository:
    ```bash
    git clone https://github.com/eduardouglas99/vacation-plan.git
 
-2. Navegue até o diretório do projeto:
+2. Navigate to the project directory:
    ```bash
    cd vacation-plan
 
-3. Instale as dependências:
+3. Install dependencies:
    ```bash
    npm install
 
-4. Iniciar o JSON Server:
-   O projeto requer um servidor JSON para fornecer dados simulados. Certifique-se de ter o JSON Server instalado globalmente ou instalado localmente no projeto. Para iniciar o servidor JSON, execute o seguinte comando:
+4. Start JSON Server:
+   The project requires a JSON server to provide simulated data. Make sure you have JSON Server installed globally or locally in the project. To start the JSON server, run the following command:
    ```bash
    json-server --watch server/api/db.json --port 3003
 
-## ⚙️ Executando o projeto
+## ⚙️ Running the Project
 
-1. Iniciar o Projeto em Ambiente de Desenvolvimento:
-   Depois de iniciar o JSON Server, você pode iniciar o projeto em um ambiente de desenvolvimento local. Use o seguinte comando:
+1. Start the Project in Development Environment:
+   After starting the JSON Server, you can start the project in a local development environment. Use the following command:
    ```bash
    npm run dev
-   # ou
+   # or
    yarn dev
 
-2. Construir o Projeto para Produção:
-   Antes de implantar o projeto em um ambiente de produção, você deve construí-lo. Use o seguinte comando para criar uma versão otimizada para produção:
+2. Build the Project for Production:
+   Before deploying the project in a production environment, you need to build it. Use the following command to create an optimized version for production:
    ```bash
    npm run build
-   # ou
+   # or
    yarn build
 
-3. Iniciar o Projeto em Ambiente de Produção:
-   Depois de construir o projeto, você pode iniciar o servidor de produção localmente. Use o seguinte comando:
+3. Start the Project in Production Environment:
+   After building the project, you can start the local production server. Use the following command:
    ```bash
    npm start
-   # ou
+   # or
    yarn start
 
-## 🌐 Acesso ao Projeto
+## 🌐 Project Access
 
-Após a execução bem-sucedida dos passos acima, o projeto estará acessível localmente em http://localhost:3000. Você pode abrir este URL em um navegador da web para visualizar o projeto em execução.
+After successfully executing the above steps, the project will be accessible locally at http://localhost:3000. You can open this URL in a web browser to view the project in action.
 
-## ⚙️ Executando os testes
+## ⚙️ Running Tests
 
 npm test
 
+## 🛠️ Built With
 
-## 🛠️ Construído com
+Mention the tools you used to create your project
 
-Mencione as ferramentas que você usou para criar seu projeto
+- [React](https://reactjs.org/) - JavaScript library for building user interfaces
+- [Next.js](https://nextjs.org/) - React framework for production
+- [Styled Components](https://styled-components.com/) - CSS styling in React components
+- [React Icons](https://react-icons.github.io/react-icons/) - Icons for React
+- [Date-fns](https://date-fns.org/) - Date manipulation in JavaScript
+- [jsPDF](https://github.com/MrRio/jsPDF) - JavaScript library for PDF generation
+- [React Day Picker](https://react-day-picker.js.org/) - React component for date selection
+- [React Hook Form](https://react-hook-form.com/) - React library for forms
+- [Zod](https://github.com/colinhacks/zod) - Data schema validation in TypeScript
+- [React Multi Select Component](https://www.npmjs.com/package/react-multi-select-component) - React component for multiple selection
+- [React Responsive](https://www.npmjs.com/package/react-responsive) - React component for responsiveness
 
-- [React](https://reactjs.org/) - Biblioteca JavaScript para construção de interfaces de usuário
-- [Next.js](https://nextjs.org/) - Framework React para produção
-- [Styled Components](https://styled-components.com/) - Estilização CSS em componentes React
-- [React Icons](https://react-icons.github.io/react-icons/) - Ícones para React
-- [Date-fns](https://date-fns.org/) - Manipulação de datas em JavaScript
-- [jsPDF](https://github.com/MrRio/jsPDF) - Biblioteca JavaScript para geração de PDF
-- [React Day Picker](https://react-day-picker.js.org/) - Componente React para seleção de datas
-- [React Hook Form](https://react-hook-form.com/) - Biblioteca React para formulários
-- [Zod](https://github.com/colinhacks/zod) - Validação de esquemas de dados em TypeScript
-- [React Multi Select Component](https://www.npmjs.com/package/react-multi-select-component) - Componente React para seleção múltipla
-- [React Responsive](https://www.npmjs.com/package/react-responsive) - Componente React para responsividade
+## 📌 Version
 
-## 📌 Versão
+We use Git for version control. For available versions, see the tags in this repository [tags in this repository](https://github.com/eduardouglas99/vacation-plan.git). 
 
-Nós usamos Git para controle de versão. Para as versões disponíveis, observe as tags neste repositório [tags neste repositório](https://github.com/eduardouglas99/vacation-plan.git). 
+## ✒️ Author
 
-## ✒️ Autor
+* **Eduardo Caetano** - *Front-end Developer* - [eduardouglas99](https://github.com/eduardouglas99)
 
-* **Eduardo Caetano** - *Desenolvedor Front-end* - [eduardouglas99](https://github.com/eduardouglas99)
+## 📄 License
 
-## 📄 Licença
-
-Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
+This project is licensed under the (your license) - see the [LICENSE.md](https://github.com/usuario/projeto/licenca) file for details.
