@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Vacation Plans
 
-## Getting Started
+Nossa solução oferece uma maneira abrangente de gerenciar as férias dos funcionários dentro da empresa. Ela inclui um calendário detalhado com todos os feriados marcados, permitindo que funcionários e administradores planejem e acompanhem os dias de férias de forma fácil. O sistema fornece informações essenciais como títulos de feriados, descrições, locais e intervalos de datas, garantindo um gerenciamento eficiente do tempo de folga dos funcionários. Com essa solução, as empresas podem otimizar o processo de planejamento de férias, minimizar conflitos de agendamento e melhorar a produtividade geral.
 
-First, run the development server:
+## 📚 Índice 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* [Começando](#-começando)
+* [Pré-requisitos](#-pré-requisitos)
+* [Instalação e configuração](#-instalação-e-configuração)
+* [Executando o projeto](#-executando-o-projeto)
+* [Acesso ao Projeto](#-acesso-ao-projeto)
+* [Executando os testes](#-executando-os-testes)
+* [Construído com](#-construído-com)
+* [Autor](#-autor)
+* [Licença](#-licença)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Começando
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Consulte **[Instalação e configuração](#-instalação-e-configuração)** para saber como implantar o projeto.
 
-## Learn More
+## 📋 Pré-requisitos
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js
+- npm (gerenciador de pacotes)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🔧 Instalação e configuração
 
-## Deploy on Vercel
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/eduardouglas99/vacation-plan.git
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd vacation-plan
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Instale as dependências:
+   ```bash
+   npm install
+
+4. Iniciar o JSON Server:
+   O projeto requer um servidor JSON para fornecer dados simulados. Certifique-se de ter o JSON Server instalado globalmente ou instalado localmente no projeto. Para iniciar o servidor JSON, execute o seguinte comando:
+   ```bash
+   json-server --watch server/api/db.json --port 3003
+
+## ⚙️ Executando o projeto
+
+1. Iniciar o Projeto em Ambiente de Desenvolvimento:
+   Depois de iniciar o JSON Server, você pode iniciar o projeto em um ambiente de desenvolvimento local. Use o seguinte comando:
+   ```bash
+   npm run dev
+   # ou
+   yarn dev
+
+2. Construir o Projeto para Produção:
+   Antes de implantar o projeto em um ambiente de produção, você deve construí-lo. Use o seguinte comando para criar uma versão otimizada para produção:
+   ```bash
+   npm run build
+   # ou
+   yarn build
+
+3. Iniciar o Projeto em Ambiente de Produção:
+   Depois de construir o projeto, você pode iniciar o servidor de produção localmente. Use o seguinte comando:
+   ```bash
+   npm start
+   # ou
+   yarn start
+
+## 🌐 Acesso ao Projeto
+
+Após a execução bem-sucedida dos passos acima, o projeto estará acessível localmente em http://localhost:3000. Você pode abrir este URL em um navegador da web para visualizar o projeto em execução.
+
+## ⚙️ Executando os testes
+
+npm test
+
+
+## 🛠️ Construído com
+
+Mencione as ferramentas que você usou para criar seu projeto
+
+- [React](https://reactjs.org/) - Biblioteca JavaScript para construção de interfaces de usuário
+- [Next.js](https://nextjs.org/) - Framework React para produção
+- [Styled Components](https://styled-components.com/) - Estilização CSS em componentes React
+- [React Icons](https://react-icons.github.io/react-icons/) - Ícones para React
+- [Date-fns](https://date-fns.org/) - Manipulação de datas em JavaScript
+- [jsPDF](https://github.com/MrRio/jsPDF) - Biblioteca JavaScript para geração de PDF
+- [React Day Picker](https://react-day-picker.js.org/) - Componente React para seleção de datas
+- [React Hook Form](https://react-hook-form.com/) - Biblioteca React para formulários
+- [Zod](https://github.com/colinhacks/zod) - Validação de esquemas de dados em TypeScript
+- [React Multi Select Component](https://www.npmjs.com/package/react-multi-select-component) - Componente React para seleção múltipla
+- [React Responsive](https://www.npmjs.com/package/react-responsive) - Componente React para responsividade
+
+## 📌 Versão
+
+Nós usamos Git para controle de versão. Para as versões disponíveis, observe as tags neste repositório [tags neste repositório](https://github.com/eduardouglas99/vacation-plan.git). 
+
+## ✒️ Autor
+
+* **Eduardo Caetano** - *Desenolvedor Front-end* - [eduardouglas99](https://github.com/eduardouglas99)
+
+## 📄 Licença
+
+Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.

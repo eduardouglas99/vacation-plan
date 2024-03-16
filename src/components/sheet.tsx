@@ -9,6 +9,9 @@ import { FaFileAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import { format } from "date-fns";
+import Image from "next/image";
+
+
 export default function Sheet() {
     const { isSheetOpen, SheetCalendarToogle, holidayData, holidayRegister, deletePlan, setEditData, ModalCalendarToogle } = useContext(CalendarContext);
 
@@ -27,19 +30,19 @@ export default function Sheet() {
                         <InfoGroup>
                             <h2>Title: {holidayData.name}</h2>
                             <TextGroup>
-                                <FaFileAlt />
+                                <Image src="/icons/file.png" alt="Description" title="Description" width={20} height={20}/>
                                 <b>Description:</b> 
                                 <span className="description">{holidayData.description}</span>
                             </TextGroup>
-
+                            
                             <TextGroup>
-                                <FaLocationDot />
+                                <Image src="/icons/location.png" alt="Location" title="Location" width={20} height={20}/>
                                 <b>Location:</b> 
                                 <span>{holidayData.location}</span>
                             </TextGroup>
 
                             <TextGroup>
-                                <FaCalendar />
+                                <Image src="/icons/calendar.png" alt="Date" title="Date" width={20} height={20}/>
                                 <b>Date:</b> 
                                 <span>{format(holidayData.date, "dd/MM/yyyy")}</span>
                             </TextGroup>
@@ -52,40 +55,40 @@ export default function Sheet() {
                             <TextGroupTitle>
                                 <h2>Title: {holidayRegister.title}</h2>
                                 <TextGroupIcons>
-                                    <FaEdit title="Edit plan" onClick={() => {
+                                    <Image 
+                                        src="/icons/edit.png" alt="Edit plan" title="Edit Plan" 
+                                        style={{cursor: 'pointer'}}
+                                        width={24} height={24}onClick={() => {
                                         setEditData(holidayRegister);
                                         SheetCalendarToogle();
                                         ModalCalendarToogle();
                                     }} />
-                                    <FaTrashAlt title="Remove plan" onClick={() => deletePlan(holidayRegister)}/>
+                                    <Image 
+                                        src="/icons/trash.png" alt="Remove plan" title="Remove plan" 
+                                        style={{cursor: 'pointer'}}
+                                        width={24} height={24} onClick={() => deletePlan(holidayRegister)}/>
                                 </TextGroupIcons>
                             </TextGroupTitle>
                             <TextGroup>
-                                <FaFileAlt />
+                                <Image src="/icons/file.png" alt="Description" title="Description" width={20} height={20}/>
                                 <b>Description:</b> 
                                 <span className="description">{holidayRegister.description}</span>
                             </TextGroup> 
 
                             <TextGroup>
-                                <FaUserCheck />
+                                <Image src="/icons/users.png" alt="Participants" title="Participants" width={20} height={20}/>
                                 <b>Participants:</b> 
                                 <span>{holidayRegister.names.map(name => name.label).join(', ')}</span>
                             </TextGroup> 
 
                             <TextGroup>
-                                <FaLocationDot />
-                                <b>Location:</b> 
-                                <span>{holidayRegister.location}</span>
-                            </TextGroup> 
-
-                            <TextGroup>
-                                <FaCalendar />
+                                <Image src="/icons/calendar.png" alt="From" title="From" width={20} height={20}/>
                                 <b>From:</b> 
                                 <span>{format(holidayRegister.initialPeriod, "dd/MM/yyyy")}</span>
                             </TextGroup>
 
                             <TextGroup>
-                                <FaCalendar />
+                                <Image src="/icons/calendar.png" alt="To" title="To" width={20} height={20}/>
                                 <b>To:</b> 
                                 <span>{format(holidayRegister.endPeriod, "dd/MM/yyyy")}</span>
                             </TextGroup> 
@@ -130,8 +133,8 @@ const ModalWrapper = styled.div`
 
 const ModalHome = styled.div`
     background: white;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
     padding: 30px;
     position: relative;
 `
@@ -161,13 +164,13 @@ const LineBlock = styled.div`
     background-color: #00000014;
     position: unset;
     left: 0;
-    margin: 24px 0;
+    margin: 20px 0;
 `
 
 const InfoGroup = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     h2 {
         color: #1E1E1E;
         font-size: 20px;
@@ -176,8 +179,8 @@ const InfoGroup = styled.div`
         }
     }
     @media only screen and (max-width: 580px){
-            gap: 10px;
-        }
+        gap: 10px;
+    }
 `
 const TextGroup = styled.div`
     display: flex;
@@ -204,15 +207,8 @@ const TextGroup = styled.div`
         max-width: 100%;
         width: 100%;
         word-wrap: break-word;
-        max-height: 80px;
+        max-height: 50px;
         overflow: overlay;
-        /* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
-        /** {
-        scrollbar-width: thin;
-        scrollbar-color: #999999 #000000;
-        }*/
-
-        /* Chrome, Edge and Safari */
         &::-webkit-scrollbar {
         height: 4px;
         width: 4px;
