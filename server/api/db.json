@@ -293,39 +293,6 @@
       "id": "b013"
     },
     {
-      "id": "cfb9",
-      "names": [
-        {
-          "label": "Sofia Santos",
-          "value": "Sofia Santos"
-        },
-        {
-          "label": "Gabriel Oliveira",
-          "value": "Gabriel Oliveira"
-        },
-        {
-          "label": "Laura Pereira",
-          "value": "Laura Pereira"
-        },
-        {
-          "label": "Pedro Almeida",
-          "value": "Pedro Almeida"
-        },
-        {
-          "label": "Isabela Costa",
-          "value": "Isabela Costa"
-        },
-        {
-          "label": "Carlos de Almeida",
-          "value": "Carlos de Almeida"
-        }
-      ],
-      "initialPeriod": "2024-04-12T03:00:00.000Z",
-      "endPeriod": "2024-04-13T03:00:00.000Z",
-      "title": "wddw",
-      "description": "dwwddw"
-    },
-    {
       "id": "0229",
       "names": [
         {
@@ -405,39 +372,6 @@
       "description": "dwdwdw"
     },
     {
-      "id": "eaf3",
-      "names": [
-        {
-          "label": "Sofia Santos",
-          "value": "Sofia Santos"
-        },
-        {
-          "label": "Gabriel Oliveira",
-          "value": "Gabriel Oliveira"
-        },
-        {
-          "label": "Laura Pereira",
-          "value": "Laura Pereira"
-        },
-        {
-          "label": "Pedro Almeida",
-          "value": "Pedro Almeida"
-        },
-        {
-          "label": "Isabela Costa",
-          "value": "Isabela Costa"
-        },
-        {
-          "label": "Carlos de Almeida",
-          "value": "Carlos de Almeida"
-        }
-      ],
-      "initialPeriod": "2024-03-19T03:00:00.000Z",
-      "endPeriod": "2024-03-20T03:00:00.000Z",
-      "title": "feeffe",
-      "description": "effeef"
-    },
-    {
       "id": "6311",
       "names": [
         {
@@ -471,7 +405,7 @@
       "description": "dwdwdw"
     },
     {
-      "id": "f8c1",
+      "id": "9b65",
       "names": [
         {
           "label": "Sofia Santos",
@@ -498,10 +432,10 @@
           "value": "Carlos de Almeida"
         }
       ],
-      "initialPeriod": "2024-04-01T03:00:00.000Z",
-      "endPeriod": "2024-04-03T03:00:00.000Z",
-      "title": "wwdw",
-      "description": "wddwdwwd"
+      "initialPeriod": "2024-03-25T03:00:00.000Z",
+      "endPeriod": "2024-03-28T03:00:00.000Z",
+      "title": "fefeef",
+      "description": "efeffe"
     }
   ],
   "employees": [

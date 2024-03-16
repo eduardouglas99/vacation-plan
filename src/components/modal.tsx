@@ -103,7 +103,7 @@ export default function Modal() {
             <ModalWrapper>
                 <ModalHome>
                     <ModalTitle>Create a vacation plan</ModalTitle>
-                    <CloseModal onClick={() => {
+                    <CloseModal data-testid="modal-close-button" onClick={() => {
                         ModalCalendarToogle();
                         setEditData(null);
                     }}/>
@@ -132,30 +132,30 @@ export default function Modal() {
                         <WrapperDateBlockForm className="flex">
                             <DateBlockForm>
                                 <LabelForm htmlFor="initialPeriod">Initial period</LabelForm>
-                                <InputModal className="dateInputForm" type="date" id="initialPeriod" {...register('initialPeriod')}/>
+                                <InputModal data-testid="input-initial" className="dateInputForm" type="date" id="initialPeriod" {...register('initialPeriod')}/>
                                 {errors.initialPeriod && errors.initialPeriod?.message ? <ErrorValidation>{errors.initialPeriod.message}</ErrorValidation> : null}   
                             </DateBlockForm>
 
                             <DateBlockForm>
                                 <LabelForm htmlFor="endPeriod">End Period</LabelForm>
-                                <InputModal className="dateInputForm" type="date" id="endPeriod" {...register('endPeriod')} />
+                                <InputModal data-testid="input-end" className="dateInputForm" type="date" id="endPeriod" {...register('endPeriod')} />
                                 {errors.endPeriod && errors.endPeriod?.message ? <ErrorValidation>{errors.endPeriod.message}</ErrorValidation> : null}     
                             </DateBlockForm>
                         </WrapperDateBlockForm>
 
                         <div>
                             <LabelForm htmlFor="title">Title</LabelForm>
-                            <InputModal type="text" id="title" {...register('title')} placeholder="Collective vacation"/>
+                            <InputModal data-testid="input-title" type="text" id="title" {...register('title')} placeholder="Collective vacation"/>
                             {errors.title && <ErrorValidation>{errors.title.message}</ErrorValidation>}
                         </div>
 
                         <div>
                             <LabelForm htmlFor="description">Description</LabelForm>
-                            <InputModal type="text" id="description" {...register('description')} placeholder="Some participant will be vacation on this period"/>
+                            <InputModal data-testid="input-description" type="text" id="description" {...register('description')} placeholder="Some participant will be vacation on this period"/>
                             {errors.description && <ErrorValidation>{errors.description.message}</ErrorValidation>}
                         </div>
 
-                        <ButtonSubmitModal type="submit">Submit</ButtonSubmitModal>
+                        <ButtonSubmitModal data-testid="submit-button" type="submit">Submit</ButtonSubmitModal>
                     </FormModal>
                 </ModalHome>
             </ModalWrapper>
