@@ -24,7 +24,7 @@ export async function createVacationPlan(vacation: HolidaysServiceProps) {
         body: JSON.stringify(vacation),
     })
     .then((response) => {
-        console.log(response)
+        // console.log(response)
     })
     .catch((error) => {
         // console.log(error);
@@ -39,7 +39,7 @@ export async function deleteVacationPlan(vacation: HolidaysServiceProps) {
         },
     })
     .then((response) => {
-        console.log(response)
+        // console.log(response)
     })
     .catch((error) => {
         // console.log(error);
@@ -55,7 +55,7 @@ export async function updateVacationPlan(vacation: HolidaysServiceProps) {
         body: JSON.stringify(vacation),
     })
     .then((response) => {
-        console.log(response)
+        // console.log(response)
     })
     .catch((error) => {
         // console.log(error);
