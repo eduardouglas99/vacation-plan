@@ -61,3 +61,11 @@ export async function updateVacationPlan(vacation: HolidaysServiceProps) {
         // console.log(error);
     })
 }
+
+function setErrorServerRequest(arg0: boolean) {
+    throw new Error("Function not implemented.");
+}
+function feedbackErrorToogle(arg0: boolean) {
+    throw new Error("Function not implemented.");
+}
+

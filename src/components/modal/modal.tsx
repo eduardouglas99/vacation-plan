@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { MultiSelect } from "react-multi-select-component";
 import { HolidaysServiceProps } from "@/interface/Holidays";
 import { format, isValid, parseISO } from "date-fns";
+import { v4 as uuidv4 } from 'uuid';
 
 const schema = z.object({
     names: z.array(z.object({
@@ -57,6 +58,7 @@ export default function Modal() {
             const responseFilter = genericFilterPeriod(data.initialPeriod, data.endPeriod);
             const createVacation: HolidaysServiceProps = {
                 ...data,
+                id: uuidv4(),
                 initialPeriod: parseISO(data.initialPeriod),
                 endPeriod: parseISO(data.endPeriod),
             };
@@ -118,7 +120,7 @@ export default function Modal() {
                                 defaultValue={editData?.names || []}
                                 render={({ field: { onChange, value } }) => (
                                     <MultiSelect 
-                                        options={employees}
+                                        options={employees || []}
                                         value={value}
                                         onChange={onChange}
                                         labelledBy="Select"

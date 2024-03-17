@@ -100,6 +100,7 @@ export function CalendarProvider({children} : CalendarProps) {
     }
 
     const createPlan = async (vacation : HolidaysServiceProps) => {
+        if(!vacation) null
         try {
             await createVacationPlan(vacation)
             setVacationPlan((prev) => [...prev, vacation]);
@@ -112,6 +113,7 @@ export function CalendarProvider({children} : CalendarProps) {
     }
 
     const deletePlan = async (vacation : HolidaysServiceProps) => {
+        if(!vacation) null
         const newArray = vacationPlan.filter((item) => item.id !== vacation.id);
         try {
             await deleteVacationPlan(vacation)
@@ -124,6 +126,7 @@ export function CalendarProvider({children} : CalendarProps) {
     }
 
     const updatePlan = async (vacation : HolidaysServiceProps) => {
+        if(!vacation) null
         try {
             await updateVacationPlan(vacation)
             setVacationPlan((prev) => {

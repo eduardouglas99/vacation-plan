@@ -90,6 +90,7 @@ Mention the tools you used to create your project
 - [Zod](https://github.com/colinhacks/zod) - Data schema validation in TypeScript
 - [React Multi Select Component](https://www.npmjs.com/package/react-multi-select-component) - React component for multiple selection
 - [React Responsive](https://www.npmjs.com/package/react-responsive) - React component for responsiveness
+- [uuid](https://www.npmjs.com/package/uuid) - Unique identifier generation in JavaScript
 
 ## 📌 Version
 

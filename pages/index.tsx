@@ -18,9 +18,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return {
         props: {
             responseData: {
-                responseHolidays,
-                responseVacationPlan,
-                responseEmployees
+                responseHolidays: responseHolidays || null,
+                responseVacationPlan: responseVacationPlan || null,
+                responseEmployees: responseEmployees || null,
             }
         },
     };

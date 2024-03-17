@@ -15,7 +15,7 @@ export default function Calendar() {
     const [month, setMonth] = useState<Date>(new Date());
     const bookedStyle = { background: '#ff000024' };
     const startStyle = { background: '#ff000024', borderBottomLeftRadius: '50%', borderTopLeftRadius: '50%' };
-    const endStyle = { background: '#ff000024', borderBottomRightRadius: '50%', borderTopRightRadius: '50%'  };
+    const endStyle = { background: '#ff000024', borderBottomRightRadius: '50%', borderTopRightRadius: '50%' };
     const middleStyle = { background: '#ff000024' };
     const { SheetCalendarToogle , setHolidayData , setHolidayRegister, holidays, vacationPlan } = useContext(CalendarContext);
     const [domLoaded, setDomLoaded] = useState(false);
@@ -24,14 +24,13 @@ export default function Calendar() {
     const isDesktop = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 1280px)' });
     const numberOfMonths:number = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 4;
 
-
     const splitArray = (data: HolidaysServiceProps[]) => {
         const booked: Date[] = [];
         const range_start: Date[] = [];
         const range_middle: Date[] = [];
         const range_end: Date[] = [];
-
-        data.map((holiday) => {
+    
+        data && data.map((holiday) => {
             if (holiday.initialPeriod === holiday.endPeriod) {
                 const transformToDate = new Date(holiday.initialPeriod);
                 booked.push(transformToDate);
@@ -47,6 +46,7 @@ export default function Calendar() {
             }))
             return;
         })
+    
         return {
             booked,
             range_start,
@@ -57,23 +57,23 @@ export default function Calendar() {
 
     const SearchInformationPeriod = (day: Date) => {
         const newDateFormat = day.toISOString();
-        const haveHolidayPlan = holidays.find(d => d.date === newDateFormat);
-        const haveHolidayRegister = vacationPlan.find(date => 
+        const haveHolidayPlan = holidays && holidays.find(d => d.date === newDateFormat);
+        const haveHolidayRegister = vacationPlan && vacationPlan.find(date => 
             date.initialPeriod === newDateFormat || 
             date.endPeriod === newDateFormat ||
             isWithinInterval(newDateFormat, {
                 end: date.endPeriod,
                 start: date.initialPeriod 
             }));
-
+    
         if(!haveHolidayPlan && !haveHolidayRegister){
             setHolidayRegister(undefined);
             setHolidayData(undefined);
             return;
         }
-
+    
         SheetCalendarToogle();
-
+    
         if (!haveHolidayPlan) { 
             setHolidayData(undefined);
         } else {
@@ -88,12 +88,16 @@ export default function Calendar() {
     }
 
     useEffect(() => {
-        holidays.map((day: HolidaysPlanProps) => {
-            const dataObject = new Date(day.date);
-            setDays(state => [...state, dataObject]);
+        if (holidays && holidays.length > 0) {
+            holidays.map((day: HolidaysPlanProps) => {
+                const dataObject = new Date(day.date);
+                setDays(state => [...state, dataObject]);
+                setDomLoaded(true);
+            });
+        } else {
             setDomLoaded(true);
-        })    
-    }, [holidays])
+        }
+    }, [holidays]);
     
     return(
         <>
@@ -112,7 +116,7 @@ export default function Calendar() {
                     modifiers={
                         splitArray(vacationPlan)
                     }
-                    modifiersStyles={{ booked: bookedStyle, range_start: startStyle, range_end: endStyle, range_middle: middleStyle  }}
+                    modifiersStyles={{ booked: bookedStyle, range_start: startStyle, range_end: endStyle, range_middle: middleStyle }}
                 />
             )}
 
