@@ -32,10 +32,6 @@ const scrollAnimation = keyframes`
     to {transform: translateX(6%)}
 `;
 
-const rotate = keyframes`
-    from {transform:rotate(0deg);}
-    to {transform:rotate(360deg);}
-`;
 const load = keyframes`
     0% {
         width: 0;

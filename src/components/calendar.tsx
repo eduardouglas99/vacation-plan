@@ -18,6 +18,11 @@ export default function Calendar() {
     const endStyle = { background: '#ff000024', borderBottomRightRadius: '50%', borderTopRightRadius: '50%'  };
     const middleStyle = { background: '#ff000024' };
     const { SheetCalendarToogle , setHolidayData , setHolidayRegister, holidays, vacationPlan } = useContext(CalendarContext);
+    const [domLoaded, setDomLoaded] = useState(false);
+    const isMobile = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 768px)' });
+    const isTablet = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 980px)' });
+    const isDesktop = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 1280px)' });
+    const numberOfMonths:number = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 4;
 
 
     const splitArray = (data: HolidaysServiceProps[]) => {
@@ -82,8 +87,6 @@ export default function Calendar() {
         }
     }
 
-    const [domLoaded, setDomLoaded] = useState(false);
-
     useEffect(() => {
         holidays.map((day: HolidaysPlanProps) => {
             const dataObject = new Date(day.date);
@@ -92,11 +95,6 @@ export default function Calendar() {
         })    
     }, [holidays])
     
-    const isMobile = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 768px)' });
-    const isTablet = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 980px)' });
-    const isDesktop = typeof window !== 'undefined' && useMediaQuery({ query: '(max-width: 1280px)' });
-
-    const numberOfMonths:number = isMobile ? 1 : isTablet ? 2 : isDesktop ? 3 : 4;
     return(
         <>
             {domLoaded && (

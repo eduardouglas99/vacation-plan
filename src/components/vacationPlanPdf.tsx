@@ -46,7 +46,7 @@ const generatePDF = (holidayPDF: HolidaysServiceProps) => {
   doc.text('Informations', 15, 100);
 
   doc.setFontSize(styles.text.fontSize);
-  doc.text('Check out the following information for details on our new vacation plan. Get all the essential information about the title, description, dates, location, and participant names.', 15, 110, { maxWidth: 180 });
+  doc.text('Check out the following information for details on our new vacation plan. Get all the essential information about the title, description, dates and participant names.', 15, 110, { maxWidth: 180 });
 
   doc.setFontSize(styles.h3.fontSize);
   doc.text(`Title: ${holidayPDF && holidayPDF.title}`, 15, 140);

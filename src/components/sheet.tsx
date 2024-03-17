@@ -2,12 +2,6 @@ import { useContext} from "react";
 import styled from "styled-components";
 import { IoMdClose } from "react-icons/io";
 import CalendarContext from "@/common/context";
-import { FaLocationDot } from "react-icons/fa6";
-import { FaCalendar } from "react-icons/fa";
-import { FaUserCheck } from "react-icons/fa";
-import { FaFileAlt } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
-import { FaTrashAlt } from "react-icons/fa";
 import { format } from "date-fns";
 import Image from "next/image";
 
