@@ -1,12 +1,12 @@
 import { render, fireEvent, waitFor, findByText, screen } from '@testing-library/react'; 
-import Button from './components/button';
+import Button from './components/button/button';
 import userEvent from '@testing-library/user-event';
-import Header from './components/header';
-import Modal from './components/modal';
-import Calendar from './components/calendar';
+import Header from './components/header/header';
+import Modal from './components/modal/modal';
+import Calendar from './components/calendar/calendar';
 import { CalendarProvider } from './common/context';
 import jsPDF from 'jspdf';
-import generatePDF from './components/vacationPlanPdf';
+import generatePDF from './components/vacationPlanPdf/vacationPlanPdf';
 import { HolidaysServiceProps } from './interface/Holidays';
 import  createPlan  from './/common/context';
 jest.mock('./components/vacationPlanPdf'); 
