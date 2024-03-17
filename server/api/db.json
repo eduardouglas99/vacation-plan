@@ -291,19 +291,6 @@
     },
     {
       "id": "b013"
-    },
-    {
-      "id": "f68c",
-      "names": [
-        {
-          "label": "Laura Pereira",
-          "value": "Laura Pereira"
-        }
-      ],
-      "initialPeriod": "2024-03-01T03:00:00.000Z",
-      "endPeriod": "2024-03-30T03:00:00.000Z",
-      "title": "ferias",
-      "description": "um ano de empersa"
     }
   ],
   "employees": [

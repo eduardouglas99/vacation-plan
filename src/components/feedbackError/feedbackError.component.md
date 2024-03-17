@@ -9,7 +9,7 @@ To use the feedbackError component, follow these steps:
 1. Import the feedbackError component into your project:
 
    ```javascript
-   import feedbackError from '@/components/feedbackError';
+   import feedbackError from '@/components/feedbackError/feedbackError';
 
     const MyComponent = () => {
         return (

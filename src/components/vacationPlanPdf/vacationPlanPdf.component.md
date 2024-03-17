@@ -7,7 +7,7 @@ To generate a PDF for a new vacation plan, call the generatePDF function and pas
 1. Import the theme objects into your project:
 
    ```javascript
-    import generatePDF from '@/components/generatePDF';
+    import generatePDF from '@/components/vacationPlanPdf/generatePDF';
     import { HolidaysServiceProps } from '@/interface/Holidays';
 
     const holidayData: HolidaysServiceProps = {

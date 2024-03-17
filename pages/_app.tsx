@@ -1,5 +1,5 @@
 import { CalendarProvider } from "@/common/context";
-import { lightTheme, darkTheme } from "@/components/theme";
+import { lightTheme, darkTheme } from "@/components/theme/theme";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { useState } from "react";

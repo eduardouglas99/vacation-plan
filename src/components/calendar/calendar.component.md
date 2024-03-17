@@ -7,7 +7,7 @@ The `Calendar` component is used to display a date picker calendar with customiz
 1. Import the Calendar component into your project:
 
    ```javascript
-   import Calendar from '@/components/calendar';
+   import Calendar from '@/components/calendar/calendar';
 
     export default MyComponent() {
         return (

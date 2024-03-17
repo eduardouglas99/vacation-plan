@@ -2,7 +2,7 @@ import { EmployeesProps, HolidaysPlanProps, HolidaysServiceProps } from "@/inter
 import { createVacationPlan, deleteVacationPlan, updateVacationPlan } from "@/services/vacationPlan.service";
 import { format, isWithinInterval } from "date-fns";
 import { SetStateAction, createContext, useMemo, useState } from "react";
-import generatePDF from '../components/vacationPlanPdf';
+import generatePDF from '../components/vacationPlanPdf/vacationPlanPdf';
 
 type CalendarContextProps = {
     isModalOpen: boolean,
@@ -135,7 +135,7 @@ export function CalendarProvider({children} : CalendarProps) {
                 });
                 return updatedVacationPlan;
             });
-            
+            generatePDF(vacation);
         } catch (error) {
             setErrorServerRequest(true);
             feedbackErrorToogle(true);

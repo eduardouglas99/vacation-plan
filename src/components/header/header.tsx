@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
-import Button from './button';
+import Button from '../button/button';
 
 
 export default function Header () {

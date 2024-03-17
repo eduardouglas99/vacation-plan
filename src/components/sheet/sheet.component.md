@@ -7,7 +7,7 @@ The `Sheet` component is responsible for rendering national holidays and registe
 1. Import the Header component into your project:
 
    ```javascript
-   import Sheet from '@/components/sheet';
+   import Sheet from '@/components/sheet/sheet';
 
     export default MyComponent() {
         return (

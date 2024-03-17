@@ -7,7 +7,7 @@ The `Header` component is used to display the header section of a webpage with t
 1. Import the Header component into your project:
 
    ```javascript
-   import Header from '@/components/header';
+   import Header from '@/components/header/header';
 
     export default MyComponent() {
         return (

@@ -7,7 +7,7 @@ The `Button` component is used to render a styled button on the  page.
 1. Import the Button component into your project:
 
    ```javascript
-   import Button from '@/components/button';
+   import Button from '@/components/button/button';
 
     export default MyComponent() {
         return (

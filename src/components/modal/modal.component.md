@@ -7,7 +7,7 @@ The `Modal` component is used to create or edit vacation plans. It includes a fo
 1. Import the Header component into your project:
 
     ```javascript
-    import Modal from '@/components/modal';
+    import Modal from '@/components/modal/modal';
 
     export default MyComponent() {
         return (

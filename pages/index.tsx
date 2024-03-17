@@ -1,9 +1,9 @@
 import CalendarContext from "@/common/context";
-import Calendar from "@/components/calendar";
-import FeedbackError from "@/components/feedbackError";
-import Header from "@/components/header";
-import Modal from "@/components/modal";
-import Sheet from "@/components/sheet";
+import Calendar from "@/components/calendar/calendar";
+import FeedbackError from "@/components/feedbackError/feedbackError";
+import Header from "@/components/header/header";
+import Modal from "@/components/modal/modal";
+import Sheet from "@/components/sheet/sheet";
 import { ResponseDataProps } from "@/interface/Holidays";
 import { fetchEmployees } from "@/services/employees.service";
 import { fetchHolidays } from "@/services/holidays.service";
