@@ -91,6 +91,7 @@ const config = {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
+    "\\.(css|less|scss)$": "identity-obj-proxy",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -212,6 +213,7 @@ const config = {
     "\\.pnp\\.[^\\\\]+$",
     '/node_modules/(?!(react-day-picker)/)', 
     "/node_modules/(?!(react-day-picker)/).+\\.css$",
+    "node_modules/(?!(react-day-picker/dist/style.css)/)",
   ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them

@@ -1,15 +1,9 @@
-import { render, fireEvent, waitFor, findByText, screen } from '@testing-library/react'; 
+import { render, fireEvent, waitFor, screen } from '@testing-library/react'; 
 import Button from './components/button/button';
 import userEvent from '@testing-library/user-event';
 import Header from './components/header/header';
 import Modal from './components/modal/modal';
 import Calendar from './components/calendar/calendar';
-import { CalendarProvider } from './common/context';
-import jsPDF from 'jspdf';
-import generatePDF from './components/vacationPlanPdf/vacationPlanPdf';
-import { HolidaysServiceProps } from './interface/Holidays';
-import  createPlan  from './/common/context';
-jest.mock('./components/vacationPlanPdf'); 
 
 describe('Button Component', () => {
     test('should be able to open Modal', async () => {
@@ -31,21 +25,22 @@ describe('Button Component', () => {
 })
 
 describe('Calendar Component', () => {
-    test('shoud be able to render list items', () => {
-        // const {} = render(<Calendar />)
-        // const calendar = document.querySelector('div.rdp-multiple_months');
-        // const calendarButton = document.querySelector('button.rdp-button');
-
-        // expect(calendar).toBeInTheDocument();
-        // expect(calendarButton).toBeInTheDocument();
-
-        // userEvent.click(calendarButton);
-    })
+    test('should render DayPicker and Back to Today button', () => {
+        render(<Calendar />);
+    
+        const dayPickers = screen.getAllByRole('grid');
+        const dayPicker = dayPickers[0];
+        expect(dayPicker).toBeInTheDocument();
+    
+        const backToTodayButton = screen.getByText('Back to Today');
+        expect(backToTodayButton).toBeInTheDocument();
+    
+        expect(backToTodayButton).toBeDisabled();
+    
+        fireEvent.click(backToTodayButton);
+     });
 })
 
-// describe('FeedbackError Component', () => {
-    
-// })
 
 describe('Header Component', () => {
     test('should be able to render this year', () => {
@@ -143,42 +138,3 @@ describe('Modal Component', () => {
     })
 
 })
-
-// describe('Sheet Component', () => {
-    
-// })
-
-  
-// const mJsPDF = {
-//     setFontSize: jest.fn(),
-//     text: jest.fn(),
-//     save: jest.fn()
-//   };
-//   jest.mock('jspdf', () => jest.fn(() => mJsPDF));
-  
-//   describe('createPlan Function', () => {
-//     test('should call generatePDF with correct argument', async () => {
-//         const vacation: HolidaysServiceProps = {
-//             id: 1,
-//             names: [{ label: 'Alice', value: 'Alice' }, { label: 'Bob', value: 'Bob' }],
-//             title: 'Vacation Plan',
-//             description: 'Plan for summer vacation',
-//             endPeriod: '000000',
-//             initialPeriod: '000000000',
-//             location: 'add'
-//           };
-  
-//       render(<Modal />); // Renderiza o componente Modal
-
-//       const submitButton = screen.getByTestId('submit-button');
-//       fireEvent.click(submitButton);
-  
-//       // Chama a função createPlan com o objeto vacation
-//       // Aguarda um tempo para garantir que a função generatePDF seja chamada
-//         await waitFor(() => {
-//             createPlan(vacation);
-//             // Verifica se a função generatePDF foi chamada corretamente com o argumento vacation
-//             expect(generatePDF).toHaveBeenCalledWith(vacation);
-//         });
-//     });
-//   });
