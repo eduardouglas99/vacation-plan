@@ -1,4 +1,4 @@
-const HOLIDAY_API_URL = 'http://localhost:3003/holidays';
+const HOLIDAY_API_URL = `${process.env.baseUrl}/holidays`;
 
 export async function fetchHolidays() {
     return await fetch(HOLIDAY_API_URL)
