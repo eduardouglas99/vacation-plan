@@ -40,9 +40,20 @@ Check **[Installation and Configuration](#-installation-and-configuration)** to 
    npm install
 
 4. Start JSON Server:
-   The project requires a JSON server to provide simulated data. Make sure you have JSON Server installed globally or locally in the project. To start the JSON server, run the following command:
-   ```bash
-   json-server --watch server/api/db.json --port 3003
+   The project requires a JSON server to provide simulated data. Check out the following:
+   
+   - Creat .env with the baseUrl
+   - Clone the backend project: https://github.com/eduardouglas99/vacation-plan-backend
+
+   - Run this comands:
+
+   ```
+   npm install
+   ```
+
+   ```
+   npm start
+   ```
 
 ## ⚙️ Running the Project
 
